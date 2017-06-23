@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -93,16 +93,17 @@
 
 
 
-<meta name="description" content="工程实践A中有B，B在满足一些条件时要反馈给，A进行一些操作123public interface XXListener &amp;#123;     void onCreate();&amp;#125; A实现这个接口,并将这个接口设在B上 12345678910111213public class A implements XXListener &amp;#123;    private B mB;        p">
+<meta name="description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用O">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工程中的一些思考">
-<meta property="og:url" content="http://yoursite.com/2017/06/22/some-experience-from-practices/index.html">
+<meta property="og:title" content="Java并发点滴">
+<meta property="og:url" content="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/index.html">
 <meta property="og:site_name" content="H杂货铺">
-<meta property="og:description" content="工程实践A中有B，B在满足一些条件时要反馈给，A进行一些操作123public interface XXListener &amp;#123;     void onCreate();&amp;#125; A实现这个接口,并将这个接口设在B上 12345678910111213public class A implements XXListener &amp;#123;    private B mB;        p">
-<meta property="og:updated_time" content="2017-06-23T16:35:41.000Z">
+<meta property="og:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用O">
+<meta property="og:updated_time" content="2017-06-23T17:06:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工程中的一些思考">
-<meta name="twitter:description" content="工程实践A中有B，B在满足一些条件时要反馈给，A进行一些操作123public interface XXListener &amp;#123;     void onCreate();&amp;#125; A实现这个接口,并将这个接口设在B上 12345678910111213public class A implements XXListener &amp;#123;    private B mB;        p">
+<meta name="twitter:title" content="Java并发点滴">
+<meta name="twitter:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用O">
 
 
 
@@ -130,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/22/some-experience-from-practices/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/"/>
 
 
 
 
 
-  <title>工程中的一些思考 | H杂货铺</title>
+  <title>Java并发点滴 | H杂货铺</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -246,7 +247,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/22/some-experience-from-practices/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hseury">
@@ -263,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">工程中的一些思考</h1>
+          <h1 class="post-title" itemprop="name headline">Java并发点滴</h1>
         
 
         <div class="post-meta">
@@ -275,8 +276,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T00:21:12+08:00">
-                2017-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-24T00:05:05+08:00">
+                2017-06-24
               </time>
             
 
@@ -310,11 +311,15 @@
       
 
       
-        <h1 id="工程实践"><a href="#工程实践" class="headerlink" title="工程实践"></a>工程实践</h1><h2 id="A中有B，B在满足一些条件时要反馈给，A进行一些操作"><a href="#A中有B，B在满足一些条件时要反馈给，A进行一些操作" class="headerlink" title="A中有B，B在满足一些条件时要反馈给，A进行一些操作"></a>A中有B，B在满足一些条件时要反馈给，A进行一些操作</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">XXListener</span> </span>&#123;   </div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>A实现这个接口,并将这个接口设在B上</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">XXListener</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> B mB;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line">        mB = <span class="keyword">new</span> B();</div><div class="line">        mB.setListener(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"A -&gt; onBCreate"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当B在恰当的时机（这里是B被create时）会回调<code>XXlistener</code>的方法，这时候可以在A中进行其他的操作了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</div><div class="line">    XXListener mListener;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (mListener != <span class="keyword">null</span>)&#123;</div><div class="line">            mListener.onBCreate();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setListener</span><span class="params">(XXListener mListener)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mListener = mListener;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="进程拥有一整套变量，而线程则共享数据。"><a href="#进程拥有一整套变量，而线程则共享数据。" class="headerlink" title="进程拥有一整套变量，而线程则共享数据。"></a>进程拥有一整套变量，而线程则共享数据。</h2><h2 id="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"><a href="#阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。" class="headerlink" title="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"></a>阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。</h2><h2 id="线程的中断（不懂这个细节）"><a href="#线程的中断（不懂这个细节）" class="headerlink" title="线程的中断（不懂这个细节）"></a>线程的中断（不懂这个细节）</h2><h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><h2 id="new-runnable-blocked-waiting-timed-waiting-terminated"><a href="#new-runnable-blocked-waiting-timed-waiting-terminated" class="headerlink" title="new /runnable /blocked /waiting /timed waiting / terminated"></a><code>new</code> /<code>runnable</code> /<code>blocked</code> /<code>waiting</code> /<code>timed waiting</code> / <code>terminated</code></h2><h2 id="阻塞-和-等待"><a href="#阻塞-和-等待" class="headerlink" title="阻塞 和 等待"></a>阻塞 和 等待</h2><p>很不一样， 阻塞是获取到锁就可以进入<code>runnable</code>，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用Object.wait()或者Thread.join()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Thread.join(); <span class="comment">//等待终止指定的线程</span></div></pre></td></tr></table></figure>
+<h1 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h1><h2 id="竞争条件"><a href="#竞争条件" class="headerlink" title="竞争条件"></a>竞争条件</h2><h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><p>原子操作是指不会被线程调度机制打断的操作；这种操作一旦开始，就一直运行到结束，中间不会有任何 context switch。原子操作可以是一个步骤，也可以是多个操作步骤，但是其顺序不可以被打乱，也不可以被切割而只执行其中的一部分。将整个操作视作一个整体是原子性的核心特征。</p>
+<h2 id="条件对象"><a href="#条件对象" class="headerlink" title="条件对象"></a>条件对象</h2><p>使用条件对象（条件变量）来管理哪些已经获得了锁，但是却不能做有用工作的线程。</p>
+<p>一个锁可以有一个或者多个相关的条件对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Condition.await();     <span class="comment">// 将该线程放入Condition的等待集中</span></div><div class="line">Condition.signalAll(); <span class="comment">// 解除该Condition的等待集中所有线程的阻塞状态</span></div></pre></td></tr></table></figure>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h2 id="synchronized-关键字"><a href="#synchronized-关键字" class="headerlink" title="synchronized 关键字"></a>synchronized 关键字</h2><p>如果一个方法使用这个关键字，那么对象的锁将保护整个方法。即要调用该方法，线程必须获得内部的对象锁。</p>
+<p>内部对象锁只有一个相关条件。</p>
+<p>一个类有synchronize方法（不管是不是静态）都是要拿到这个类的实例对象的锁。</p>
 
       
     </div>
@@ -342,6 +347,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
 
       
       
@@ -351,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/12/hello-world/" rel="next" title="effect java 读书笔记">
-                <i class="fa fa-chevron-left"></i> effect java 读书笔记
+              <a href="/2017/06/22/some-experience-from-practices/" rel="next" title="工程中的一些思考">
+                <i class="fa fa-chevron-left"></i> 工程中的一些思考
               </a>
             
           </div>
@@ -360,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/24/thinking-in-java-concurrency/" rel="prev" title="Java并发点滴">
-                Java并发点滴 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工程实践"><span class="nav-number">1.</span> <span class="nav-text">工程实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A中有B，B在满足一些条件时要反馈给，A进行一些操作"><span class="nav-number">1.1.</span> <span class="nav-text">A中有B，B在满足一些条件时要反馈给，A进行一些操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程拥有一整套变量，而线程则共享数据。"><span class="nav-number">1.1.</span> <span class="nav-text">进程拥有一整套变量，而线程则共享数据。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"><span class="nav-number">1.2.</span> <span class="nav-text">阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的中断（不懂这个细节）"><span class="nav-number">1.3.</span> <span class="nav-text">线程的中断（不懂这个细节）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程状态"><span class="nav-number">1.4.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new-runnable-blocked-waiting-timed-waiting-terminated"><span class="nav-number">1.5.</span> <span class="nav-text">new /runnable /blocked /waiting /timed waiting / terminated</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞-和-等待"><span class="nav-number">1.6.</span> <span class="nav-text">阻塞 和 等待</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步"><span class="nav-number">2.</span> <span class="nav-text">同步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#竞争条件"><span class="nav-number">2.1.</span> <span class="nav-text">竞争条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子操作"><span class="nav-number">2.2.</span> <span class="nav-text">原子操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件对象"><span class="nav-number">2.3.</span> <span class="nav-text">条件对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">2.4.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized-关键字"><span class="nav-number">2.5.</span> <span class="nav-text">synchronized 关键字</span></a></li></ol></li></ol></div>
             
 
           </div>
