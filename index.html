@@ -321,6 +321,9 @@
 <h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h2 id="synchronized-关键字"><a href="#synchronized-关键字" class="headerlink" title="synchronized 关键字"></a>synchronized 关键字</h2><p>如果一个方法使用这个关键字，那么对象的锁将保护整个方法。即要调用该方法，线程必须获得内部的对象锁。</p>
 <p>内部对象锁只有一个相关条件。</p>
 <p>一个类有synchronize方法（不管是不是静态）都是要拿到这个类的实例对象的锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Object.wait();      <span class="comment">// 导致线程进入等待状态直到被通知</span></div><div class="line">Object.notifyAll(); <span class="comment">// 解除调用了wait方法的线程的阻塞状态</span></div></pre></td></tr></table></figure>
+<h2 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h2><p>免锁机制，如果一个域为volatile，则编译器和虚拟机就知道这个域可能被另一个线程并发更新。</p>
+<p>（这个关键字怎么做到免锁的？）</p>
 
           
         
