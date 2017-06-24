@@ -93,19 +93,17 @@
 
 
 
-<meta name="description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated  阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调">
+<meta name="description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发点滴">
 <meta property="og:url" content="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/index.html">
 <meta property="og:site_name" content="H杂货铺">
-<meta property="og:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated  阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调">
-<meta property="og:image" content="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/java_multi_thread.png">
-<meta property="og:updated_time" content="2017-06-24T06:48:55.000Z">
+<meta property="og:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
+<meta property="og:updated_time" content="2017-06-24T06:50:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发点滴">
-<meta name="twitter:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated  阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调">
-<meta name="twitter:image" content="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/java_multi_thread.png">
+<meta name="twitter:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
 
 
 
@@ -313,8 +311,7 @@
       
 
       
-        <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="进程拥有一整套变量，而线程则共享数据。"><a href="#进程拥有一整套变量，而线程则共享数据。" class="headerlink" title="进程拥有一整套变量，而线程则共享数据。"></a>进程拥有一整套变量，而线程则共享数据。</h2><h2 id="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"><a href="#阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。" class="headerlink" title="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"></a>阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。</h2><h2 id="线程的中断（不懂这个细节）"><a href="#线程的中断（不懂这个细节）" class="headerlink" title="线程的中断（不懂这个细节）"></a>线程的中断（不懂这个细节）</h2><h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><h2 id="new-runnable-blocked-waiting-timed-waiting-terminated"><a href="#new-runnable-blocked-waiting-timed-waiting-terminated" class="headerlink" title="new /runnable /blocked /waiting /timed waiting / terminated"></a><code>new</code> /<code>runnable</code> /<code>blocked</code> /<code>waiting</code> /<code>timed waiting</code> / <code>terminated</code></h2><p><img src="/2017/06/24/thinking-in-java-concurrency/java_multi_thread.png" alt=""></p>
-
+        <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="进程拥有一整套变量，而线程则共享数据。"><a href="#进程拥有一整套变量，而线程则共享数据。" class="headerlink" title="进程拥有一整套变量，而线程则共享数据。"></a>进程拥有一整套变量，而线程则共享数据。</h2><h2 id="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"><a href="#阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。" class="headerlink" title="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"></a>阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。</h2><h2 id="线程的中断（不懂这个细节）"><a href="#线程的中断（不懂这个细节）" class="headerlink" title="线程的中断（不懂这个细节）"></a>线程的中断（不懂这个细节）</h2><h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><h2 id="new-runnable-blocked-waiting-timed-waiting-terminated"><a href="#new-runnable-blocked-waiting-timed-waiting-terminated" class="headerlink" title="new /runnable /blocked /waiting /timed waiting / terminated"></a><code>new</code> /<code>runnable</code> /<code>blocked</code> /<code>waiting</code> /<code>timed waiting</code> / <code>terminated</code></h2>
 <h2 id="阻塞-和-等待"><a href="#阻塞-和-等待" class="headerlink" title="阻塞 和 等待"></a>阻塞 和 等待</h2><p>很不一样， 阻塞是获取到锁就可以进入<code>runnable</code>，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用Object.wait()或者Thread.join()</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Thread.join(); <span class="comment">//等待终止指定的线程</span></div></pre></td></tr></table></figure>
 <h1 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h1><h2 id="竞争条件"><a href="#竞争条件" class="headerlink" title="竞争条件"></a>竞争条件</h2><h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><p>原子操作是指不会被线程调度机制打断的操作；这种操作一旦开始，就一直运行到结束，中间不会有任何 context switch。原子操作可以是一个步骤，也可以是多个操作步骤，但是其顺序不可以被打乱，也不可以被切割而只执行其中的一部分。将整个操作视作一个整体是原子性的核心特征。</p>
