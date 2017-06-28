@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/28/android-decompile/index.html">
 <meta property="og:site_name" content="立酱的星辰大海">
 <meta property="og:description" content="Dex2Jar阅读反编译源码所需工具dex2jar12chmod a+x *.sh./d2j-dex2jar.sh ../apks/oupeng12.8.0.5.apk jd-gui打开生成的jar包即可查看。 apktool反编译资源1java -jar ../../apktool/apktool_2.2.2.jar d ../oupeng12.8.0.5.apk 二次打包打出未签名包1java">
-<meta property="og:updated_time" content="2017-06-28T13:29:17.000Z">
+<meta property="og:updated_time" content="2017-06-28T15:55:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android 反编译备忘">
 <meta name="twitter:description" content="Dex2Jar阅读反编译源码所需工具dex2jar12chmod a+x *.sh./d2j-dex2jar.sh ../apks/oupeng12.8.0.5.apk jd-gui打开生成的jar包即可查看。 apktool反编译资源1java -jar ../../apktool/apktool_2.2.2.jar d ../oupeng12.8.0.5.apk 二次打包打出未签名包1java">
@@ -368,6 +368,7 @@
 <h1 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h1><h2 id="反编译资源"><a href="#反编译资源" class="headerlink" title="反编译资源"></a>反编译资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar ../../apktool/apktool_2.2.2.jar d ../oupeng12.8.0.5.apk</div></pre></td></tr></table></figure>
 <h2 id="二次打包"><a href="#二次打包" class="headerlink" title="二次打包"></a>二次打包</h2><h3 id="打出未签名包"><a href="#打出未签名包" class="headerlink" title="打出未签名包"></a>打出未签名包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar ../../apktool/apktool_2.2.2.jar b  oupeng12.8.0.5 -o opera_unsigned.apk</div></pre></td></tr></table></figure>
 <h3 id="打出重签名包"><a href="#打出重签名包" class="headerlink" title="打出重签名包"></a>打出重签名包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jarsigner -keystore debug.keystore -signedjar oooop.apk  opera_unsigned.apk  androiddebugkey</div></pre></td></tr></table></figure>
+<h3 id="在smali文件中打出调用堆栈"><a href="#在smali文件中打出调用堆栈" class="headerlink" title="在smali文件中打出调用堆栈"></a>在smali文件中打出调用堆栈</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">invoke-static &#123;&#125;, Ljava/lang/Thread;-&gt;dumpStack()V</div></pre></td></tr></table></figure>
 <h1 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h1><h1 id="ClassyShark"><a href="#ClassyShark" class="headerlink" title="ClassyShark"></a>ClassyShark</h1>
       
     </div>
@@ -413,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/28/once-upon-a-time-in-Moscow/" rel="prev" title="莫斯科往事---我的旅途1/2">
-                莫斯科往事---我的旅途1/2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -538,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dex2Jar阅读反编译源码"><span class="nav-number">1.</span> <span class="nav-text">Dex2Jar阅读反编译源码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#所需工具"><span class="nav-number">1.1.</span> <span class="nav-text">所需工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dex2jar"><span class="nav-number">1.1.1.</span> <span class="nav-text">dex2jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jd-gui"><span class="nav-number">1.1.2.</span> <span class="nav-text">jd-gui</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apktool"><span class="nav-number">2.</span> <span class="nav-text">apktool</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反编译资源"><span class="nav-number">2.1.</span> <span class="nav-text">反编译资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次打包"><span class="nav-number">2.2.</span> <span class="nav-text">二次打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打出未签名包"><span class="nav-number">2.2.1.</span> <span class="nav-text">打出未签名包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打出重签名包"><span class="nav-number">2.2.2.</span> <span class="nav-text">打出重签名包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jadx"><span class="nav-number">3.</span> <span class="nav-text">jadx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ClassyShark"><span class="nav-number">4.</span> <span class="nav-text">ClassyShark</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dex2Jar阅读反编译源码"><span class="nav-number">1.</span> <span class="nav-text">Dex2Jar阅读反编译源码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#所需工具"><span class="nav-number">1.1.</span> <span class="nav-text">所需工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dex2jar"><span class="nav-number">1.1.1.</span> <span class="nav-text">dex2jar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jd-gui"><span class="nav-number">1.1.2.</span> <span class="nav-text">jd-gui</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#apktool"><span class="nav-number">2.</span> <span class="nav-text">apktool</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反编译资源"><span class="nav-number">2.1.</span> <span class="nav-text">反编译资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次打包"><span class="nav-number">2.2.</span> <span class="nav-text">二次打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打出未签名包"><span class="nav-number">2.2.1.</span> <span class="nav-text">打出未签名包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打出重签名包"><span class="nav-number">2.2.2.</span> <span class="nav-text">打出重签名包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在smali文件中打出调用堆栈"><span class="nav-number">2.2.3.</span> <span class="nav-text">在smali文件中打出调用堆栈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jadx"><span class="nav-number">3.</span> <span class="nav-text">jadx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ClassyShark"><span class="nav-number">4.</span> <span class="nav-text">ClassyShark</span></a></li></ol></div>
             
 
           </div>
