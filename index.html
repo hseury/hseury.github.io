@@ -868,7 +868,6 @@
         
           
             <h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><h2 id="进程拥有一整套变量，而线程则共享数据。"><a href="#进程拥有一整套变量，而线程则共享数据。" class="headerlink" title="进程拥有一整套变量，而线程则共享数据。"></a>进程拥有一整套变量，而线程则共享数据。</h2><h2 id="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"><a href="#阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。" class="headerlink" title="阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。"></a>阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。</h2><h2 id="线程的中断（不懂这个细节）"><a href="#线程的中断（不懂这个细节）" class="headerlink" title="线程的中断（不懂这个细节）"></a>线程的中断（不懂这个细节）</h2><h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><h2 id="new-runnable-blocked-waiting-timed-waiting-terminated"><a href="#new-runnable-blocked-waiting-timed-waiting-terminated" class="headerlink" title="new /runnable /blocked /waiting /timed waiting / terminated"></a><code>new</code> /<code>runnable</code> /<code>blocked</code> /<code>waiting</code> /<code>timed waiting</code> / <code>terminated</code></h2><p><img src="/2017/06/24/thinking-in-java-concurrency/java_multi_thread.png" alt=""></p>
-<!--  –&gt;
 <h2 id="阻塞-和-等待"><a href="#阻塞-和-等待" class="headerlink" title="阻塞 和 等待"></a>阻塞 和 等待</h2><p>很不一样， 阻塞是获取到锁就可以进入<code>runnable</code>，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用Object.wait()或者Thread.join()</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Thread.join();  <span class="comment">//等待终止指定的线程</span></div><div class="line">Thread.yield(); <span class="comment">//让当前运行的线程回到可运行状态，以允许其他优先级的线程获得运行机会，让步的该线程也有可能会被再次选中</span></div></pre></td></tr></table></figure>
 <p>join()使用示例</p>
@@ -887,7 +886,7 @@
 <p>（这个关键字怎么做到免锁的？）</p>
 <h2 id="死锁-1"><a href="#死锁-1" class="headerlink" title="死锁"></a>死锁</h2><p>有时候避免共享内存，使用<code>ThreadLocal</code>辅助类来为各个线程提供各自的实例</p>
 <p>（AOSP里也有ThreadLocal类）</p>
--->
+
           
         
       
