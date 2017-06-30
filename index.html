@@ -374,6 +374,12 @@
 <h2 id="二次打包"><a href="#二次打包" class="headerlink" title="二次打包"></a>二次打包</h2><h3 id="打出未签名包"><a href="#打出未签名包" class="headerlink" title="打出未签名包"></a>打出未签名包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -jar ../../apktool/apktool_2.2.2.jar b  oupeng12.8.0.5 -o opera_unsigned.apk</div></pre></td></tr></table></figure>
 <h3 id="打出重签名包"><a href="#打出重签名包" class="headerlink" title="打出重签名包"></a>打出重签名包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jarsigner -keystore debug.keystore -signedjar oooop.apk  opera_unsigned.apk  androiddebugkey</div></pre></td></tr></table></figure>
 <h3 id="在smali文件中打出调用堆栈"><a href="#在smali文件中打出调用堆栈" class="headerlink" title="在smali文件中打出调用堆栈"></a>在smali文件中打出调用堆栈</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">invoke-static &#123;&#125;, Ljava/lang/Thread;-&gt;dumpStack()V</div></pre></td></tr></table></figure>
+<h3 id="二次打包遇到报错怎么办"><a href="#二次打包遇到报错怎么办" class="headerlink" title="二次打包遇到报错怎么办"></a>二次打包遇到报错怎么办</h3><p>在二次打包的时候，遇到了资源找不到的报错，而且这样的报错很多，起码上百条。</p>
+<blockquote>
+<p>W: res/layout/a.xml:4: error: Error: No resource found that matches the given name (at ‘style’ with value ‘@style/DialogTitleTheme’).</p>
+</blockquote>
+<p>为了快速打包，在sublime中使用正则搜索</p>
+<p><code>style=(.*)</code>全局替换成空，再次打包就可以成功了。</p>
 <h1 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h1><h1 id="ClassyShark"><a href="#ClassyShark" class="headerlink" title="ClassyShark"></a>ClassyShark</h1>
           
         
