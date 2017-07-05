@@ -866,6 +866,23 @@
 <p>（这个关键字怎么做到免锁的？）</p>
 <h2 id="死锁-1"><a href="#死锁-1" class="headerlink" title="死锁"></a>死锁</h2><p>有时候避免共享内存，使用<code>ThreadLocal</code>辅助类来为各个线程提供各自的实例</p>
 <p>（AOSP里也有ThreadLocal类）</p>
+<h2 id="java中long和double的非原子性"><a href="#java中long和double的非原子性" class="headerlink" title="java中long和double的非原子性"></a>java中long和double的非原子性</h2><p>在java中，long和double类型的数据都占8个字节长度，即64位。对于long和double类型的读写操作，java并不能保证其原子性。</p>
+<blockquote>
+<p>For the purposes of the Java programming language memory model, a single write to a non-volatile long or double value is treated as two separate writes: one to each 32-bit half. This can result in a situation where a thread sees the first 32 bits of a 64-bit value from one write, and the second 32 bits from another write.<br>Writes and reads of volatile long and double values are always atomic.<br>Writes to and reads of references are always atomic, regardless of whether they are implemented as 32-bit or 64-bit values.<br>Some implementations may find it convenient to divide a single write action on a 64-bit long or double value into two write actions on adjacent 32-bit values. For efficiency’s sake, this behavior is implementation-specific; an implementation of the Java Virtual Machine is free to perform writes to long and double values atomically or in two parts.<br>Implementations of the Java Virtual Machine are encouraged to avoid splitting 64-bit values where possible. Programmers are encouraged to declare shared 64-bit values as volatile or synchronize their programs correctly to avoid possible complications.</p>
+</blockquote>
+<p>总结一下： </p>
+<ol>
+<li>在java中，非volatile的double和long类型的写操作被分成了两个32位的写操作，所以对于64位的double和long类型的写操作就不是原子操作。 </li>
+<li>对于volatile类型的long和double类型的写操作是原子操作。</li>
+<li>对于引用类型的读写操作都是原子操作，无论引用类型的实际类型是32位的值还是64位的值。 </li>
+<li>在我们多线程情况下用到long和double的时候，尽量使用volatile或者同步对于数据操作进行控制。</li>
+</ol>
+<p>在多线程环境下对上面的SharedInt和SharedLong进行赋值和读取操作，都会出现线程安全问题，那么对于long和int来说，有啥不同呢？</p>
+<ol>
+<li>对于int类型的不恰当操作会造成的问题是：老的数据会被读取到。 </li>
+<li>对于long或double类型的不恰当操作会造成的问题是：可能从未出现过的数据被读取到。</li>
+</ol>
+<p>虽然int型是原子数据，但是并不保证一个线程写入的值，对于另一个线程是可见的。<br>所以需要同步操作。</p>
 
           
         
@@ -1178,6 +1195,7 @@
 <h2 id="53-接口优先于反射机制"><a href="#53-接口优先于反射机制" class="headerlink" title="53 接口优先于反射机制"></a>53 接口优先于反射机制</h2><h2 id="54-谨慎地使用本地方法（native-method）"><a href="#54-谨慎地使用本地方法（native-method）" class="headerlink" title="54 谨慎地使用本地方法（native method）"></a>54 谨慎地使用本地方法（native method）</h2><h2 id="55-谨慎地进行优化"><a href="#55-谨慎地进行优化" class="headerlink" title="55 谨慎地进行优化"></a>55 谨慎地进行优化</h2><p>编写好的程序而不是快的程序<br>设计系统时就要考虑性能<br>借助性能分析器来找到问题的根源，然后设法优化系统中相关的部分</p>
 <h2 id="56-遵守普遍接受的明明惯例"><a href="#56-遵守普遍接受的明明惯例" class="headerlink" title="56 遵守普遍接受的明明惯例"></a>56 遵守普遍接受的明明惯例</h2><h1 id="chapter-9-异常"><a href="#chapter-9-异常" class="headerlink" title="chapter 9 异常"></a>chapter 9 异常</h1><h2 id="57-只针对异常的情况才使用异常"><a href="#57-只针对异常的情况才使用异常" class="headerlink" title="57 只针对异常的情况才使用异常"></a>57 只针对异常的情况才使用异常</h2><p>基于异常的模式比标准模式慢得多</p>
 <h2 id="58-对可恢复的情况使用受检异常，对编程错误使用运行时异常"><a href="#58-对可恢复的情况使用受检异常，对编程错误使用运行时异常" class="headerlink" title="58 对可恢复的情况使用受检异常，对编程错误使用运行时异常"></a>58 对可恢复的情况使用受检异常，对编程错误使用运行时异常</h2><p>checked exception/runtime exception/error</p>
+<h1 id="chapter-10-并发"><a href="#chapter-10-并发" class="headerlink" title="chapter 10 并发"></a>chapter 10 并发</h1><h2 id="66-同步访问共享的可变数据"><a href="#66-同步访问共享的可变数据" class="headerlink" title="66 同步访问共享的可变数据"></a>66 同步访问共享的可变数据</h2><p>java规范保证一个变量的读或写是原子的，除了long和double</p>
 
           
         
