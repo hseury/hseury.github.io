@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
 <meta property="og:image" content="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/java_multi_thread.png">
-<meta property="og:updated_time" content="2017-07-05T12:00:32.000Z">
+<meta property="og:updated_time" content="2017-07-05T14:39:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发点滴">
 <meta name="twitter:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
@@ -395,7 +395,7 @@
 <li>对于引用类型的读写操作都是原子操作，无论引用类型的实际类型是32位的值还是64位的值。 </li>
 <li>在我们多线程情况下用到long和double的时候，尽量使用volatile或者同步对于数据操作进行控制。</li>
 </ol>
-<p>在多线程环境下对上面的SharedInt和SharedLong进行赋值和读取操作，都会出现线程安全问题，那么对于long和int来说，有啥不同呢？</p>
+<p>在多线程环境下对int和long进行赋值和读取操作，都会出现线程安全问题，那么有啥不同呢？</p>
 <ol>
 <li>对于int类型的不恰当操作会造成的问题是：老的数据会被读取到。 </li>
 <li>对于long或double类型的不恰当操作会造成的问题是：可能从未出现过的数据被读取到。</li>
