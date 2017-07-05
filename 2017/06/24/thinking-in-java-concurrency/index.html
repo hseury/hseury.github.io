@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
 <meta property="og:image" content="http://yoursite.com/2017/06/24/thinking-in-java-concurrency/java_multi_thread.png">
-<meta property="og:updated_time" content="2017-07-05T11:31:43.000Z">
+<meta property="og:updated_time" content="2017-07-05T12:00:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发点滴">
 <meta name="twitter:description" content="进程与线程进程拥有一整套变量，而线程则共享数据。阻塞，指的是暂停一个线程的执行以等待某个条件的发生，比如资源就位。线程的中断（不懂这个细节）线程状态new /runnable /blocked /waiting /timed waiting / terminated 阻塞 和 等待很不一样， 阻塞是获取到锁就可以进入runnable，等待是等待另一个线程通知调度器一个条件，自己进入等待状态，如调用">
@@ -401,6 +401,7 @@
 <li>对于long或double类型的不恰当操作会造成的问题是：可能从未出现过的数据被读取到。</li>
 </ol>
 <p>虽然int型是原子数据，但是并不保证一个线程写入的值，对于另一个线程是可见的。<br>所以需要同步操作。</p>
+<p>读方法和写方法都需要同步。如果不需要互斥，只需要通信，考虑volatile。</p>
 
       
     </div>
