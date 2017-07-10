@@ -558,6 +558,8 @@
 <p>实际构建的地方，<code>repositories</code>在代码块中，<code>jcenter</code>是被配置成整个构建过程的依赖仓库。<code>jcenter</code>是预配置的maven仓库，不需要额外的配置。可以方便的添加自己的本地或者远程仓库。</p>
 <p><code>jcenter</code>和<code>maven</code>是有名的远程仓库，一般不同时使用这两个。</p>
 <p>工程目录下的<code>./gradle/wrapper/gradle-wrapper.properties</code>文件会被配置为这个任务执行的gradle对应的版本。</p>
+<h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>使用merge标签可以减少多余的层次结构，多用于一个布局需要包含另一个布局的时候，或者这一个布局用到的重复样式比较多。在加载merge标签的时候，不会加载父控件，只会加载merge标签中的子view。merge标签结合include一起使用可以灵活的、可复用性强的创建布局。</p>
+<h3 id="viewstub"><a href="#viewstub" class="headerlink" title="viewstub"></a>viewstub</h3><p>ViewStub有一个比较大的优点就是当你用到这个布局的时候才会去加载，例如我们在布局里写了ViewStub并引用一个我们写好的布局。这时候我们可以在我们的activity中使用的时候，必须先设置visible。 这样这个布局才会被加载显示。否则是不会显示的。为了防止都findViewById 方法，我们可以调用inflate()方法，这个方法会返回一个view，我们可以直接对这个view进行操作。</p>
 
           
         
