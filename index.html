@@ -267,6 +267,129 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/11/tips-about-android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hseury">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HSEURY_POINTER">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/11/tips-about-android/" itemprop="url">安卓开发过程中的坑备忘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T09:09:46+08:00">
+                2017-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/11/tips-about-android/" class="leancloud_visitors" data-flag-title="安卓开发过程中的坑备忘">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><h2 id="FrameLayout或者LinearLayout"><a href="#FrameLayout或者LinearLayout" class="headerlink" title="FrameLayout或者LinearLayout"></a>FrameLayout或者LinearLayout</h2><p>成员imageView调用setTransitionX()方法不生效</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/04/problems-about-webview-android/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -554,13 +677,17 @@
 <p>Android自定义控件中有个MeasureSpec类，可以将测量模式和size用同一个int表示。</p>
 <p><a href="http://www.jianshu.com/p/0c954c6af861" target="_blank" rel="external">点击这里查看具体</a></p>
 <p>这样的操作压榨了性能。Android中一般用在flag这种可以设置多个属性的地方，每一位代表一个属性开关，取属性的时候用&amp;就可以判断。可以用来表示多种状态同时存在，同时也提高了可读性。</p>
-<h1 id="事件分发机制"><a href="#事件分发机制" class="headerlink" title="事件分发机制"></a>事件分发机制</h1><h2 id="dispatchTouchEvent-onInterruptTouchEvent-onTouchEvent"><a href="#dispatchTouchEvent-onInterruptTouchEvent-onTouchEvent" class="headerlink" title="dispatchTouchEvent/onInterruptTouchEvent/onTouchEvent"></a>dispatchTouchEvent/onInterruptTouchEvent/onTouchEvent</h2><h2 id="手指滑动操作-GestureDetector"><a href="#手指滑动操作-GestureDetector" class="headerlink" title="手指滑动操作 GestureDetector"></a>手指滑动操作 GestureDetector</h2><h2 id="手指缩放操作-ScaleGestureDetector"><a href="#手指缩放操作-ScaleGestureDetector" class="headerlink" title="手指缩放操作 ScaleGestureDetector"></a>手指缩放操作 ScaleGestureDetector</h2><h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><h2 id="启动一个activity，ams推了几次栈"><a href="#启动一个activity，ams推了几次栈" class="headerlink" title="启动一个activity，ams推了几次栈?"></a>启动一个activity，ams推了几次栈?</h2><h1 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h1><h2 id="构建配置文件"><a href="#构建配置文件" class="headerlink" title="构建配置文件"></a>构建配置文件</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.3.3'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="事件分发机制"><a href="#事件分发机制" class="headerlink" title="事件分发机制"></a>事件分发机制</h1><h2 id="dispatchTouchEvent-onInterruptTouchEvent-onTouchEvent"><a href="#dispatchTouchEvent-onInterruptTouchEvent-onTouchEvent" class="headerlink" title="dispatchTouchEvent/onInterruptTouchEvent/onTouchEvent"></a>dispatchTouchEvent/onInterruptTouchEvent/onTouchEvent</h2><h2 id="手指滑动操作-GestureDetector"><a href="#手指滑动操作-GestureDetector" class="headerlink" title="手指滑动操作 GestureDetector"></a>手指滑动操作 GestureDetector</h2><h2 id="手指缩放操作-ScaleGestureDetector"><a href="#手指缩放操作-ScaleGestureDetector" class="headerlink" title="手指缩放操作 ScaleGestureDetector"></a>手指缩放操作 ScaleGestureDetector</h2><h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><p>（带填坑）</p>
+<h2 id="启动一个activity，ams推了几次栈"><a href="#启动一个activity，ams推了几次栈" class="headerlink" title="启动一个activity，ams推了几次栈?"></a>启动一个activity，ams推了几次栈?</h2><h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="View的尺寸测量"><a href="#View的尺寸测量" class="headerlink" title="View的尺寸测量"></a>View的尺寸测量</h2><p>measure、layout、draw</p>
+<p>（待填坑）</p>
+<h2 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h2><p>需要自定义自视图的排列方式时使用。（下拉刷新控件）</p>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><h3 id="include"><a href="#include" class="headerlink" title="include"></a>include</h3><p>该标签的目的是解决重复定义布局的问题而诞生的，提高代码的复用。</p>
+<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>使用merge标签可以减少多余的层次结构，多用于一个布局需要包含另一个布局的时候，或者这一个布局用到的重复样式比较多。在加载merge标签的时候，不会加载父控件，只会加载merge标签中的子view。merge标签结合include一起使用可以灵活的、可复用性强的创建布局。</p>
+<h3 id="viewstub"><a href="#viewstub" class="headerlink" title="viewstub"></a>viewstub</h3><p>ViewStub有一个比较大的优点就是当你用到这个布局的时候才会去加载，例如我们在布局里写了ViewStub并引用一个我们写好的布局。这时候我们可以在我们的activity中使用的时候，必须先设置visible。 这样这个布局才会被加载显示。否则是不会显示的。为了防止都findViewById 方法，我们可以调用inflate()方法，这个方法会返回一个view，我们可以直接对这个view进行操作。</p>
+<h1 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h1><h2 id="构建配置文件"><a href="#构建配置文件" class="headerlink" title="构建配置文件"></a>构建配置文件</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">buildscript</span> &#123;</div><div class="line">    <span class="keyword">repositories</span> &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">dependencies</span> &#123;</div><div class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.3.3'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>实际构建的地方，<code>repositories</code>在代码块中，<code>jcenter</code>是被配置成整个构建过程的依赖仓库。<code>jcenter</code>是预配置的maven仓库，不需要额外的配置。可以方便的添加自己的本地或者远程仓库。</p>
 <p><code>jcenter</code>和<code>maven</code>是有名的远程仓库，一般不同时使用这两个。</p>
 <p>工程目录下的<code>./gradle/wrapper/gradle-wrapper.properties</code>文件会被配置为这个任务执行的gradle对应的版本。</p>
-<h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><h3 id="include"><a href="#include" class="headerlink" title="include"></a>include</h3><p>该标签的目的是解决重复定义布局的问题而诞生的，提高代码的复用。</p>
-<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>使用merge标签可以减少多余的层次结构，多用于一个布局需要包含另一个布局的时候，或者这一个布局用到的重复样式比较多。在加载merge标签的时候，不会加载父控件，只会加载merge标签中的子view。merge标签结合include一起使用可以灵活的、可复用性强的创建布局。</p>
-<h3 id="viewstub"><a href="#viewstub" class="headerlink" title="viewstub"></a>viewstub</h3><p>ViewStub有一个比较大的优点就是当你用到这个布局的时候才会去加载，例如我们在布局里写了ViewStub并引用一个我们写好的布局。这时候我们可以在我们的activity中使用的时候，必须先设置visible。 这样这个布局才会被加载显示。否则是不会显示的。为了防止都findViewById 方法，我们可以调用inflate()方法，这个方法会返回一个view，我们可以直接对这个view进行操作。</p>
 
           
         
@@ -1658,7 +1785,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1675,6 +1802,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
