@@ -369,6 +369,8 @@
         
           
             <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><h2 id="FrameLayout或者LinearLayout"><a href="#FrameLayout或者LinearLayout" class="headerlink" title="FrameLayout或者LinearLayout"></a>FrameLayout或者LinearLayout</h2><p>成员imageView调用setTransitionX()方法不生效</p>
+<h2 id="ViewPager的事件拦截机制"><a href="#ViewPager的事件拦截机制" class="headerlink" title="ViewPager的事件拦截机制"></a>ViewPager的事件拦截机制</h2><p>dispatcchTouchEvent有down事件，ontouchevent没有down事件?<br>(待填坑)</p>
+<h2 id="View的scrollTo-方法不生效"><a href="#View的scrollTo-方法不生效" class="headerlink" title="View的scrollTo()方法不生效"></a>View的scrollTo()方法不生效</h2><p>怀疑是view不可见引起的</p>
 
           
         
@@ -705,7 +707,6 @@
 <h2 id="启动一个activity，ams推了几次栈"><a href="#启动一个activity，ams推了几次栈" class="headerlink" title="启动一个activity，ams推了几次栈?"></a>启动一个activity，ams推了几次栈?</h2><h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="View的尺寸测量"><a href="#View的尺寸测量" class="headerlink" title="View的尺寸测量"></a>View的尺寸测量</h2><p>measure、layout、draw</p>
 <p>（待填坑）</p>
 <h2 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h2><p>需要自定义自视图的排列方式时使用。（下拉刷新控件）</p>
-<h2 id="ViewPager的事件拦截机制"><a href="#ViewPager的事件拦截机制" class="headerlink" title="ViewPager的事件拦截机制"></a>ViewPager的事件拦截机制</h2><p>dispatcchTouchEvent有down事件，ontouchevent没有down事件?<br>(待填坑)</p>
 <h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><h3 id="include"><a href="#include" class="headerlink" title="include"></a>include</h3><p>该标签的目的是解决重复定义布局的问题而诞生的，提高代码的复用。</p>
 <h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><p>使用merge标签可以减少多余的层次结构，多用于一个布局需要包含另一个布局的时候，或者这一个布局用到的重复样式比较多。在加载merge标签的时候，不会加载父控件，只会加载merge标签中的子view。merge标签结合include一起使用可以灵活的、可复用性强的创建布局。</p>
 <h3 id="viewstub"><a href="#viewstub" class="headerlink" title="viewstub"></a>viewstub</h3><p>ViewStub有一个比较大的优点就是当你用到这个布局的时候才会去加载，例如我们在布局里写了ViewStub并引用一个我们写好的布局。这时候我们可以在我们的activity中使用的时候，必须先设置visible。 这样这个布局才会被加载显示。否则是不会显示的。为了防止都findViewById 方法，我们可以调用inflate()方法，这个方法会返回一个view，我们可以直接对这个view进行操作。</p>
