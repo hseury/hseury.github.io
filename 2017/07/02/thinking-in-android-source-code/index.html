@@ -99,12 +99,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/02/thinking-in-android-source-code/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="消息循环机制Handler如何与线程、线程的消息队列进行关联base/core/java/android/app/ActivityThread.java 12345678910111213141516171819202122232425262728293031323334353637public static void main(String[] args) &amp;#123;        Sampl">
-<meta property="og:image" content="http://yoursite.com/2017/07/02/thinking-in-android-source-code/listview_adpter.png">
-<meta property="og:updated_time" content="2017-07-18T11:41:22.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/07/02/thinking-in-android-source-code/listview_adapter.png">
+<meta property="og:updated_time" content="2017-07-18T11:48:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android源码阅读体会">
 <meta name="twitter:description" content="消息循环机制Handler如何与线程、线程的消息队列进行关联base/core/java/android/app/ActivityThread.java 12345678910111213141516171819202122232425262728293031323334353637public static void main(String[] args) &amp;#123;        Sampl">
-<meta name="twitter:image" content="http://yoursite.com/2017/07/02/thinking-in-android-source-code/listview_adpter.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/02/thinking-in-android-source-code/listview_adapter.png">
 
 
 
@@ -418,8 +418,8 @@
 <h2 id="启动一个activity，ams推了几次栈"><a href="#启动一个activity，ams推了几次栈" class="headerlink" title="启动一个activity，ams推了几次栈?"></a>启动一个activity，ams推了几次栈?</h2><h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="View的尺寸测量"><a href="#View的尺寸测量" class="headerlink" title="View的尺寸测量"></a>View的尺寸测量</h2><p>measure、layout、draw</p>
 <p>（待填坑）</p>
 <h2 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h2><p>需要自定义自视图的排列方式时使用。（下拉刷新控件）</p>
-<h2 id="ListView的使用"><a href="#ListView的使用" class="headerlink" title="ListView的使用"></a>ListView的使用</h2><p>在工程中发现，如果使用BaseAdapter，则需要实现<code>getView</code>,<code>getItemId</code>,<code>getCount</code>,<code>getItem</code>这四个方法，而使用ArrayAdapter则只需要<code>getView</code>方法就可以。<br>通过看源码发现，实际上ArrayAdapter继承了BaseAdapter，并实现了另外三个方法。</p>
-<p><img src="/2017/07/02/thinking-in-android-source-code/listview_adpter.png" alt=""></p>
+<h2 id="ListView的使用"><a href="#ListView的使用" class="headerlink" title="ListView的使用"></a>ListView的使用</h2><p>在工程中发现，如果使用BaseAdapter，则需要实现<code>getView</code>,<code>getItemId</code>,<code>getCount</code>,<code>getItem</code>这四个方法，而使用ArrayAdapter则只需要<code>getView</code>方法就可以。<br>通过看源码发现，实际上ArrayAdapter继承了BaseAdapter，并实现了另外三个方法。和常规的baseAdapter实现方法一致。</p>
+<p><img src="/2017/07/02/thinking-in-android-source-code/listview_adapter.png" alt=""></p>
 <p>代码如下：</p>
 <p><code>base/core/java/android/widget/ArrayAdapter.java</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> mObjects.size();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> T <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> mObjects.get(position);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> position;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
