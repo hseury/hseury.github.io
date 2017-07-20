@@ -734,6 +734,10 @@
 <p>@return True if the event was handled, false otherwise.</p>
 </blockquote>
 <p>虽然源码中表示了这三个返回值都可以拦截事件，但是还是根据函数的名称，尽量在<code>onInterceptTouchEvent</code>中拦截事件。<code>dispatchTouchEvent</code>一般不做操作。</p>
+<p>正如在其他文中说的</p>
+<blockquote>
+<p>在当前view，dispatchTouchEvent每次手势滑动都会传递，onInterceptTouchEvent返回false，表示不拦截事件，则ontouchevent不调用，onInterceptTouchEvent返回true，表示拦截事件，onTouchEvent会处理，但是如果第一次onTouchEvent返回true，则以后的onInterceptTouchEvent都不会被调用，因为view已经确认要处理事件了。</p>
+</blockquote>
 <h2 id="手指滑动操作-GestureDetector"><a href="#手指滑动操作-GestureDetector" class="headerlink" title="手指滑动操作 GestureDetector"></a>手指滑动操作 GestureDetector</h2><h2 id="手指缩放操作-ScaleGestureDetector"><a href="#手指缩放操作-ScaleGestureDetector" class="headerlink" title="手指缩放操作 ScaleGestureDetector"></a>手指缩放操作 ScaleGestureDetector</h2><h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><p>（带填坑）</p>
 <h2 id="启动一个activity，ams推了几次栈"><a href="#启动一个activity，ams推了几次栈" class="headerlink" title="启动一个activity，ams推了几次栈?"></a>启动一个activity，ams推了几次栈?</h2><h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="View的尺寸测量"><a href="#View的尺寸测量" class="headerlink" title="View的尺寸测量"></a>View的尺寸测量</h2><p>measure、layout、draw</p>
 <p>（待填坑）</p>
