@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="消息循环机制Handler如何与线程、线程的消息队列进行关联base/core/java/android/app/ActivityThread.java 12345678910111213141516171819202122232425262728293031323334353637public static void main(String[] args) &amp;#123;        Sampl">
 <meta property="og:image" content="http://yoursite.com/2017/07/02/thinking-in-android-source-code/listview_adapter.png">
-<meta property="og:updated_time" content="2017-07-18T11:51:03.000Z">
+<meta property="og:updated_time" content="2017-07-20T15:54:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android源码阅读体会">
 <meta name="twitter:description" content="消息循环机制Handler如何与线程、线程的消息队列进行关联base/core/java/android/app/ActivityThread.java 12345678910111213141516171819202122232425262728293031323334353637public static void main(String[] args) &amp;#123;        Sampl">
@@ -410,10 +410,13 @@
 <p><code>base/core/java/android/view/ViewGroup.java</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;  <span class="comment">// 直接返回false, 默认不拦截事件。</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">    ......</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//没有onTouchEvent()的操作</span></div></pre></td></tr></table></figure>
 <p>这三个函数都会返回一个boolean值，都表示是否会被拦截。</p>
+<p>dispatchTouchEvent和onInterceptTouchEvent负责事件传递，onTouchEvent表示事件处理。</p>
+<p>事件传递返回true表示，事件拦截了，不再传递。返回false，表示继续向子view传递。</p>
+<p>事件处理返回true表示，事件处理了，不再处理了。返回false， 表示交给父view处理。</p>
 <blockquote>
 <p>@return True if the event was handled, false otherwise.</p>
 </blockquote>
-<p>虽然源码中表示了这三个返回值都可以拦截事件，但是还是根据函数的名称，尽量在<code>onInterceptTouchEvent</code>中拦截事件。</p>
+<p>虽然源码中表示了这三个返回值都可以拦截事件，但是还是根据函数的名称，尽量在<code>onInterceptTouchEvent</code>中拦截事件。<code>dispatchTouchEvent</code>一般不做操作。</p>
 <h2 id="手指滑动操作-GestureDetector"><a href="#手指滑动操作-GestureDetector" class="headerlink" title="手指滑动操作 GestureDetector"></a>手指滑动操作 GestureDetector</h2><h2 id="手指缩放操作-ScaleGestureDetector"><a href="#手指缩放操作-ScaleGestureDetector" class="headerlink" title="手指缩放操作 ScaleGestureDetector"></a>手指缩放操作 ScaleGestureDetector</h2><h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><p>（带填坑）</p>
 <h2 id="启动一个activity，ams推了几次栈"><a href="#启动一个activity，ams推了几次栈" class="headerlink" title="启动一个activity，ams推了几次栈?"></a>启动一个activity，ams推了几次栈?</h2><h1 id="View"><a href="#View" class="headerlink" title="View"></a>View</h1><h2 id="View的尺寸测量"><a href="#View的尺寸测量" class="headerlink" title="View的尺寸测量"></a>View的尺寸测量</h2><p>measure、layout、draw</p>
 <p>（待填坑）</p>
