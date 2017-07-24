@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 ViewPager的事件拦截机制onInterceptTouchEvent没有down事件，ontouchevent有move事件? 首先是一段log： log打在这个viewpager的dispatchTouchEvent,onInterceptTouchEven">
+<meta name="description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 View的scrollTo()方法不生效怀疑是view不可见引起的 ViewPager的事件拦截机制onInterceptTouchEvent没有down事件，ontouchevent有move事件? 首先是一段log： log打在这个viewpager的dispa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安卓开发过程中的坑备忘">
 <meta property="og:url" content="http://yoursite.com/2017/07/11/tips-about-android/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
-<meta property="og:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 ViewPager的事件拦截机制onInterceptTouchEvent没有down事件，ontouchevent有move事件? 首先是一段log： log打在这个viewpager的dispatchTouchEvent,onInterceptTouchEven">
-<meta property="og:updated_time" content="2017-07-24T08:29:22.000Z">
+<meta property="og:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 View的scrollTo()方法不生效怀疑是view不可见引起的 ViewPager的事件拦截机制onInterceptTouchEvent没有down事件，ontouchevent有move事件? 首先是一段log： log打在这个viewpager的dispa">
+<meta property="og:updated_time" content="2017-07-24T16:02:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓开发过程中的坑备忘">
-<meta name="twitter:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 ViewPager的事件拦截机制onInterceptTouchEvent没有down事件，ontouchevent有move事件? 首先是一段log： log打在这个viewpager的dispatchTouchEvent,onInterceptTouchEven">
+<meta name="twitter:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 View的scrollTo()方法不生效怀疑是view不可见引起的 ViewPager的事件拦截机制onInterceptTouchEvent没有down事件，ontouchevent有move事件? 首先是一段log： log打在这个viewpager的dispa">
 
 
 
@@ -364,6 +364,7 @@
 
       
         <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><h2 id="FrameLayout或者LinearLayout"><a href="#FrameLayout或者LinearLayout" class="headerlink" title="FrameLayout或者LinearLayout"></a>FrameLayout或者LinearLayout</h2><p>成员imageView调用setTransitionX()方法不生效</p>
+<h2 id="View的scrollTo-方法不生效"><a href="#View的scrollTo-方法不生效" class="headerlink" title="View的scrollTo()方法不生效"></a>View的scrollTo()方法不生效</h2><p>怀疑是view不可见引起的</p>
 <h2 id="ViewPager的事件拦截机制"><a href="#ViewPager的事件拦截机制" class="headerlink" title="ViewPager的事件拦截机制"></a>ViewPager的事件拦截机制</h2><p>onInterceptTouchEvent没有down事件，ontouchevent有move事件?</p>
 <p>首先是一段log：</p>
 <p>log打在这个viewpager的<code>dispatchTouchEvent</code>,<code>onInterceptTouchEvent</code>和<code>onTouchEvent</code>方法中。result表示该方法的返回值。</p>
@@ -379,12 +380,15 @@
 <p>虽然这个结果与官方文档的说法有点不同，但实验说明是正确的。仔细想想这样的逻辑也确实非常合理：因为onInterceptTouchEvent方法是用来拦截触摸事件，防止被View捕获。那么现在View在onTouchEvent中返回fTrue，明确声明自己会处理这个触摸事件，那么这个时候就不需要拦截了，因此onInterceptTouchEvent不需要拦截这个事件，那也就没有必要将后续事件再传给它了。</p>
 <p>因此，在dispatchTouchEvent中可以获得所有事件，其他两个方法不会每次事件传递都会调用。</p>
 <p>有时间翻看源码来查看这个机制。（待填坑）</p>
-<h2 id="View的scrollTo-方法不生效"><a href="#View的scrollTo-方法不生效" class="headerlink" title="View的scrollTo()方法不生效"></a>View的scrollTo()方法不生效</h2><p>怀疑是view不可见引起的</p>
 <h2 id="ListView的adapter中没有数据显示指定view"><a href="#ListView的adapter中没有数据显示指定view" class="headerlink" title="ListView的adapter中没有数据显示指定view"></a>ListView的adapter中没有数据显示指定view</h2><p>当列表为空时，有时需要显示一个特殊的empty view来提示用户，一般情况下，<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;ListView android:id="@+id/list" .../ </div><div class="line">&lt;TextView android:id="@+id/empty" .../</div></pre></td></tr></table></figure></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ListView list= (ListView)findViewById(R.id.mylist); </div><div class="line">TextView tv= (TextView)findViewById(R.id.myempty); </div><div class="line"></div><div class="line">list.setEmptyView(tv);</div></pre></td></tr></table></figure>
 <p> 当列表为空时就会自动显示TextView </p>
 <h2 id="activity相关"><a href="#activity相关" class="headerlink" title="activity相关"></a>activity相关</h2><p> A(singleTask)- B - B finish - A</p>
 <p> 此时A仍然会走onCreate为何？</p>
+<p> 抽象一个简单应用，B的类型为</p>
+<p> standard/singleTop/singleTask/singleInstance</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">07-24 23:55:50.826 18366-18366/org.hseury.androiddemo E/BActivtiy: onPause</div><div class="line">07-24 23:55:50.846 18366-18366/org.hseury.androiddemo E/SplashActivity: onStart</div><div class="line">07-24 23:55:50.846 18366-18366/org.hseury.androiddemo E/SplashActivity: onResume</div><div class="line">07-24 23:55:51.276 18366-18366/org.hseury.androiddemo E/BActivtiy: onStop</div><div class="line">07-24 23:55:51.276 18366-18366/org.hseury.androiddemo E/BActivtiy: onDestroy</div></pre></td></tr></table></figure>
+<p>四种情况下输出的log均一致，应该是遗留代码逻辑问题。</p>
 <h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h3 id="单例引起的内存泄漏"><a href="#单例引起的内存泄漏" class="headerlink" title="单例引起的内存泄漏"></a>单例引起的内存泄漏</h3><p>以下代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppManager</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppManager instance;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">AppManager</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">            instance = <span class="keyword">new</span> AppManager(context);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是一个普通的单例模式，当创建这个单例的时候，由于需要传入一个Context，所以这个Context的生命周期的长短至关重要：</p>
@@ -558,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view"><span class="nav-number">1.</span> <span class="nav-text">自定义view</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FrameLayout或者LinearLayout"><span class="nav-number">1.1.</span> <span class="nav-text">FrameLayout或者LinearLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPager的事件拦截机制"><span class="nav-number">1.2.</span> <span class="nav-text">ViewPager的事件拦截机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View的scrollTo-方法不生效"><span class="nav-number">1.3.</span> <span class="nav-text">View的scrollTo()方法不生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView的adapter中没有数据显示指定view"><span class="nav-number">1.4.</span> <span class="nav-text">ListView的adapter中没有数据显示指定view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#activity相关"><span class="nav-number">1.5.</span> <span class="nav-text">activity相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">1.6.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例引起的内存泄漏"><span class="nav-number">1.6.1.</span> <span class="nav-text">单例引起的内存泄漏</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view"><span class="nav-number">1.</span> <span class="nav-text">自定义view</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FrameLayout或者LinearLayout"><span class="nav-number">1.1.</span> <span class="nav-text">FrameLayout或者LinearLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View的scrollTo-方法不生效"><span class="nav-number">1.2.</span> <span class="nav-text">View的scrollTo()方法不生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPager的事件拦截机制"><span class="nav-number">1.3.</span> <span class="nav-text">ViewPager的事件拦截机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView的adapter中没有数据显示指定view"><span class="nav-number">1.4.</span> <span class="nav-text">ListView的adapter中没有数据显示指定view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#activity相关"><span class="nav-number">1.5.</span> <span class="nav-text">activity相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">1.6.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例引起的内存泄漏"><span class="nav-number">1.6.1.</span> <span class="nav-text">单例引起的内存泄漏</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
