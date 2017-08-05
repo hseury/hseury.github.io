@@ -504,6 +504,7 @@
         
           
             <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><h2 id="FrameLayout或者LinearLayout"><a href="#FrameLayout或者LinearLayout" class="headerlink" title="FrameLayout或者LinearLayout"></a>FrameLayout或者LinearLayout</h2><p>成员imageView调用setTransitionX()方法不生效</p>
+<p>不存在的，要确定可见性</p>
 <h2 id="View的scrollTo-方法不生效"><a href="#View的scrollTo-方法不生效" class="headerlink" title="View的scrollTo()方法不生效"></a>View的scrollTo()方法不生效</h2><p>怀疑是view不可见引起的(划掉)</p>
 <p>不存在，可能是scrollto滑动方向与预期的相反导致的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrollTo(<span class="number">144</span>,<span class="number">0</span>);</div></pre></td></tr></table></figure>
@@ -1092,7 +1093,8 @@
 </blockquote>
 <p>为了快速打包，在sublime中使用正则搜索</p>
 <p><code>style=(.*)</code>全局替换成空，再次打包就可以成功了。</p>
-<h1 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h1><h1 id="ClassyShark"><a href="#ClassyShark" class="headerlink" title="ClassyShark"></a>ClassyShark</h1>
+<h1 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h1><h1 id="ClassyShark"><a href="#ClassyShark" class="headerlink" title="ClassyShark"></a>ClassyShark</h1><h1 id="查看imei信息"><a href="#查看imei信息" class="headerlink" title="查看imei信息"></a>查看imei信息</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">adb shell dumpsys iphonesubinfo</div></pre></td></tr></table></figure>
+
           
         
       

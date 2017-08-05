@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 View的scrollTo()方法不生效怀疑是view不可见引起的(划掉) 不存在，可能是scrollto滑动方向与预期的相反导致的 1scrollTo(144,0); 本以为是从左向右移动，实际上是从右往左移动。 ViewPager的事件拦截机制onInterce">
+<meta name="description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 不存在的，要确定可见性 View的scrollTo()方法不生效怀疑是view不可见引起的(划掉) 不存在，可能是scrollto滑动方向与预期的相反导致的 1scrollTo(144,0); 本以为是从左向右移动，实际上是从右往左移动。 ViewPager的事件拦">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安卓开发过程中的坑备忘">
 <meta property="og:url" content="http://yoursite.com/2017/07/11/tips-about-android/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
-<meta property="og:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 View的scrollTo()方法不生效怀疑是view不可见引起的(划掉) 不存在，可能是scrollto滑动方向与预期的相反导致的 1scrollTo(144,0); 本以为是从左向右移动，实际上是从右往左移动。 ViewPager的事件拦截机制onInterce">
-<meta property="og:updated_time" content="2017-07-31T16:18:57.000Z">
+<meta property="og:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 不存在的，要确定可见性 View的scrollTo()方法不生效怀疑是view不可见引起的(划掉) 不存在，可能是scrollto滑动方向与预期的相反导致的 1scrollTo(144,0); 本以为是从左向右移动，实际上是从右往左移动。 ViewPager的事件拦">
+<meta property="og:updated_time" content="2017-08-05T05:26:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓开发过程中的坑备忘">
-<meta name="twitter:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 View的scrollTo()方法不生效怀疑是view不可见引起的(划掉) 不存在，可能是scrollto滑动方向与预期的相反导致的 1scrollTo(144,0); 本以为是从左向右移动，实际上是从右往左移动。 ViewPager的事件拦截机制onInterce">
+<meta name="twitter:description" content="自定义viewFrameLayout或者LinearLayout成员imageView调用setTransitionX()方法不生效 不存在的，要确定可见性 View的scrollTo()方法不生效怀疑是view不可见引起的(划掉) 不存在，可能是scrollto滑动方向与预期的相反导致的 1scrollTo(144,0); 本以为是从左向右移动，实际上是从右往左移动。 ViewPager的事件拦">
 
 
 
@@ -374,6 +374,7 @@
 
       
         <h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><h2 id="FrameLayout或者LinearLayout"><a href="#FrameLayout或者LinearLayout" class="headerlink" title="FrameLayout或者LinearLayout"></a>FrameLayout或者LinearLayout</h2><p>成员imageView调用setTransitionX()方法不生效</p>
+<p>不存在的，要确定可见性</p>
 <h2 id="View的scrollTo-方法不生效"><a href="#View的scrollTo-方法不生效" class="headerlink" title="View的scrollTo()方法不生效"></a>View的scrollTo()方法不生效</h2><p>怀疑是view不可见引起的(划掉)</p>
 <p>不存在，可能是scrollto滑动方向与预期的相反导致的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrollTo(<span class="number">144</span>,<span class="number">0</span>);</div></pre></td></tr></table></figure>
