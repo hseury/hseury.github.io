@@ -359,6 +359,11 @@
             <h1 id="Ios初探"><a href="#Ios初探" class="headerlink" title="Ios初探"></a>Ios初探</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><h2 id="xib和storyboard差不多？"><a href="#xib和storyboard差不多？" class="headerlink" title="xib和storyboard差不多？"></a>xib和storyboard差不多？</h2><h2 id="Xcode工具"><a href="#Xcode工具" class="headerlink" title="Xcode工具"></a>Xcode工具</h2><p>self = [super initWithNibName:<code>nibNameOrNil</code> bundle:<code>nibBundleOrNil</code>];</p>
 <p>self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];</p>
 <p>要把回车键按下，把占位符（灰色背景）的部分变成实际的代码。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量前面一定要加*</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//alloc and init items</div><div class="line">NSMutableArray *items = [[NSMutableArray alloc] init];</div><div class="line">     ......      </div><div class="line">for (NSString *s in items) &#123;</div><div class="line">     NSLog(@&quot;%@&quot;,s);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="格式字符串"><a href="#格式字符串" class="headerlink" title="格式字符串"></a>格式字符串</h3><p>与c一致</p>
+<p><code>%@</code>对应指向任意一种对象的指针</p>
+<h3 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h3><p><code>@interface</code> 类申明</p>
 
           
         
