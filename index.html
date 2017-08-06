@@ -364,6 +364,20 @@
 <h3 id="格式字符串"><a href="#格式字符串" class="headerlink" title="格式字符串"></a>格式字符串</h3><p>与c一致</p>
 <p><code>%@</code>对应指向任意一种对象的指针</p>
 <h3 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h3><p><code>@interface</code> 类申明</p>
+<p><code>.h</code>文件，<code>@interface</code>和<code>@end</code>开始结尾。</p>
+<p><code>.m</code>文件，<code>@implementation</code>和<code>@end</code>开始结尾。</p>
+<p>OC和java一样，有默认值，（null和0）</p>
+<p>字符串前面一定加@</p>
+<p>不能._value直接拿到对象，要用方法申明的value(这条规则感觉略蛋疼)；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Item : NSObject&#123;</div><div class="line">    NSString *_itenName;</div><div class="line">    NSString *_serialNumber;</div><div class="line">    int _valueInDollars;</div><div class="line">    NSData *_dateCreated;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//method declare</div><div class="line">-(void) setItemName:(NSString*)str;</div><div class="line">-(NSString *) itemName;</div><div class="line">-(void) setSerialNumber:(NSString *)str;</div><div class="line">-(NSString *)serialNumber;</div><div class="line">-(void)setValueInDollars:(int)v;</div><div class="line">-(int)valueInDollars;</div><div class="line">-(NSData*)dateCreated;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>消息发送调用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">      [item setItemName:@&quot;red sofa&quot;];</div><div class="line">      [item setSerialNumber:@&quot;A1B2C3&quot;];</div><div class="line">      [item setValueInDollars:100];</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>点方法</p>
+<pre><code class="objective-c">  item.itemName = @&quot;black cat&quot;; //注意此处点运算符后面的不是成员变量_XXXX,而是方法名XXXX
+  item.serialNumber = @&quot;A1B2C3D4&quot;;
+  item.valueInDollars = 120;
+@end
+</code></pre>
 
           
         
