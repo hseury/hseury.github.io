@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/11/analyse-chrome-public/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="启动app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java ChromeLauncherActivity 123456789private final void doOnCreate(Bundle savedInstanceState) &amp;#123;        // This Acti">
-<meta property="og:updated_time" content="2017-08-11T15:43:39.000Z">
+<meta property="og:updated_time" content="2017-08-11T16:12:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chromepublic源码分析">
 <meta name="twitter:description" content="启动app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java ChromeLauncherActivity 123456789private final void doOnCreate(Bundle savedInstanceState) &amp;#123;        // This Acti">
@@ -377,6 +377,8 @@
 <p>ChromeLauncherActivity</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">doOnCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="comment">// This Activity is only transient. It launches another activity and</span></div><div class="line">        <span class="comment">// terminates itself. However, some of the work is performed outside of</span></div><div class="line">        <span class="comment">// &#123;@link Activity#onCreate()&#125;. To capture this, the TraceEvent starts</span></div><div class="line">        <span class="comment">// in onCreate(), and ends in onPause().</span></div><div class="line">        <span class="comment">// Needs to be called as early as possible, to accurately capture the</span></div><div class="line">        <span class="comment">// time at which the intent was received.</span></div><div class="line">        ......</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>启动后就跳到 CustomTabActivity，并把自己回收掉。</p>
+<p>CustomTabActivity里面有mTab</p>
+<p>Tab类里，有AndroidWindow和ContentViewCore,这些都是webview的内部成员，这里tab直接和webview的组件进行交互，不通过webview来进行回调。</p>
 
       
     </div>
