@@ -402,6 +402,8 @@
 <h3 id="查询字符串"><a href="#查询字符串" class="headerlink" title="查询字符串"></a>查询字符串</h3><p>?q=grunt&amp;first=9</p>
 <h3 id="信息片段"><a href="#信息片段" class="headerlink" title="信息片段"></a>信息片段</h3><p>仅在浏览器使用，不会传递到服务器</p>
 <p>#history</p>
+<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="重复启动web-app"><a href="#重复启动web-app" class="headerlink" title="重复启动web app"></a>重复启动web app</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i :8080 | grep LISTEN</div></pre></td></tr></table></figure>
+<p>拿到进程号之后kill掉</p>
 
           
         
