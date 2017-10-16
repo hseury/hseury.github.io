@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/04/problems-about-webview-android/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="pauseTimes()会影响所有webview12345678910/**  * Pauses all layout, parsing, and JavaScript timers for all WebViews. This  * is a global requests, not restricted to just this WebView. This can be  * useful i">
-<meta property="og:updated_time" content="2017-08-09T02:53:53.000Z">
+<meta property="og:updated_time" content="2017-10-16T13:29:27.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android WebView 各种坑">
 <meta name="twitter:description" content="pauseTimes()会影响所有webview12345678910/**  * Pauses all layout, parsing, and JavaScript timers for all WebViews. This  * is a global requests, not restricted to just this WebView. This can be  * useful i">
@@ -393,6 +393,9 @@
 <p>WebViewClient.onPageFinished()。你永远无法确定当WebView调用这个方法的时候，网页内容是否真的加载完毕了。当前正在加载的网页产生跳转的时候这个方法可能会被多次调用，StackOverflow上有比较具体的解释（How to listen for a Webview finishing loading a URL in Android?）， 但其中列举的解决方法并不完美。所以当你的WebView需要加载各种各样的网页并且需要在页面加载完成时采取一些操作的话，可能WebChromeClient.onProgressChanged()比WebViewClient.onPageFinished()都要靠谱一些。</p>
 </blockquote>
 <p><a href="https://www.zhihu.com/question/31316646" target="_blank" rel="external">Android WebView 在开发过程中有哪些坑？</a></p>
+<h2 id="多进程渲染webview打开后，webview不能正常加载网页"><a href="#多进程渲染webview打开后，webview不能正常加载网页" class="headerlink" title="多进程渲染webview打开后，webview不能正常加载网页"></a>多进程渲染webview打开后，webview不能正常加载网页</h2><p>在7.0手机的开发者模式打开多进程webview，或者在8.0手机上直接使用webview。只有加载第一个网页正常，输入新网址地址之后，则不能加载新网页，页面还停留在原有的页面。</p>
+<p>打印log发现，webview的onprogresschanged的回调直接走的10和100（10是默认加载开始时候的返回进度），发现这是由于在webview加载过程中加载了js导致。如果在dom树建立之后，</p>
+<p>加载js则正常。如果想在onLoadResource和onProgressChanged这些比较早的回调中加载js。则需要修改编译工具。</p>
 
       
     </div>
@@ -563,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pauseTimes-会影响所有webview"><span class="nav-number">1.</span> <span class="nav-text">pauseTimes()会影响所有webview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onPageFinished-多次调用"><span class="nav-number">2.</span> <span class="nav-text">onPageFinished()多次调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pauseTimes-会影响所有webview"><span class="nav-number">1.</span> <span class="nav-text">pauseTimes()会影响所有webview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onPageFinished-多次调用"><span class="nav-number">2.</span> <span class="nav-text">onPageFinished()多次调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程渲染webview打开后，webview不能正常加载网页"><span class="nav-number">3.</span> <span class="nav-text">多进程渲染webview打开后，webview不能正常加载网页</span></a></li></ol></div>
             
 
           </div>
