@@ -1036,6 +1036,9 @@
 <p>不存在，可能是scrollto滑动方向与预期的相反导致的</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrollTo(<span class="number">144</span>,<span class="number">0</span>);</div></pre></td></tr></table></figure>
 <p>本以为是从左向右移动，实际上是从右往左移动。</p>
+<h2 id="View的style文件也会影响view的触发事件"><a href="#View的style文件也会影响view的触发事件" class="headerlink" title="View的style文件也会影响view的触发事件"></a>View的style文件也会影响view的触发事件</h2><p>在代码移植过程中，发现View的onfocuschanged方法一直不能回调</p>
+<p>仔细对比代码也检查不出来哪里出问题了</p>
+<p>后来发现是，当初为了加快移植节奏，样式问题没有调整，style文件没有指定</p>
 <h2 id="ViewPager的事件拦截机制"><a href="#ViewPager的事件拦截机制" class="headerlink" title="ViewPager的事件拦截机制"></a>ViewPager的事件拦截机制</h2><p>onInterceptTouchEvent没有down事件，ontouchevent有move事件?</p>
 <p>首先是一段log：</p>
 <p>log打在这个viewpager的<code>dispatchTouchEvent</code>,<code>onInterceptTouchEvent</code>和<code>onTouchEvent</code>方法中。result表示该方法的返回值。</p>
