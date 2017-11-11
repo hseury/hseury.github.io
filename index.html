@@ -707,6 +707,8 @@
 <p>启动后就跳到 CustomTabActivity，并把自己回收掉。</p>
 <p>CustomTabActivity里面有mTab</p>
 <p>Tab类里，有AndroidWindow和ContentViewCore,这些都是webview的内部成员，这里tab直接和webview的组件进行交互，不通过webview来进行回调。</p>
+<h1 id="地址栏的维护"><a href="#地址栏的维护" class="headerlink" title="地址栏的维护"></a>地址栏的维护</h1><p>单tab页，最复杂的就是地址栏的维护</p>
+<p>分为三个状态，正常态(normal),编辑态（edited）,高亮态（highlighted），高亮对应选中整个url链接</p>
 
           
         
