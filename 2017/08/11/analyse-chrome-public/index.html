@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/11/analyse-chrome-public/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="启动app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java ChromeLauncherActivity 123456789private final void doOnCreate(Bundle savedInstanceState) &amp;#123;        // This Acti">
-<meta property="og:updated_time" content="2017-11-09T16:26:30.596Z">
+<meta property="og:updated_time" content="2017-11-17T07:21:25.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chromepublic源码分析">
 <meta name="twitter:description" content="启动app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java ChromeLauncherActivity 123456789private final void doOnCreate(Bundle savedInstanceState) &amp;#123;        // This Acti">
@@ -391,6 +391,12 @@
 <p>Tab类里，有AndroidWindow和ContentViewCore,这些都是webview的内部成员，这里tab直接和webview的组件进行交互，不通过webview来进行回调。</p>
 <h1 id="地址栏的维护"><a href="#地址栏的维护" class="headerlink" title="地址栏的维护"></a>地址栏的维护</h1><p>单tab页，最复杂的就是地址栏的维护</p>
 <p>分为三个状态，正常态(normal),编辑态（edited）,高亮态（highlighted），高亮对应选中整个url链接</p>
+<p>正常态，显示链接的title，左侧没有图标</p>
+<p>点击一下，转化高亮态，此时左边有图标（重新加载），整个title变为网页的url，这个url底色为绿色</p>
+<p>再点击一下，转化为编辑态，此时光标闪动，可以对url进行编辑，此时左侧图标是搜索。</p>
+<h1 id="menu的创建"><a href="#menu的创建" class="headerlink" title="menu的创建"></a>menu的创建</h1><p>虽然BrowserActivity是自己实现了弹出menu悬浮窗的效果，但是还是借鉴了activity自带的menu的生命周期。减少了维护逻辑的成本。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">showMenu</span><span class="params">(View anchor)</span> </span>&#123;</div><div class="line">    Activity activity = mUiController.getActivity();</div><div class="line">    <span class="keyword">if</span> (mPopupMenu == <span class="keyword">null</span>) &#123;</div><div class="line">        mPopupMenu = <span class="keyword">new</span> PopupMenu(getContext(), anchor);</div><div class="line">        mPopupMenu.setOnMenuItemClickListener(<span class="keyword">this</span>);</div><div class="line">        mPopupMenu.setOnDismissListener(<span class="keyword">this</span>);</div><div class="line">        <span class="keyword">if</span> (!activity.onCreateOptionsMenu(mPopupMenu.getMenu())) &#123;</div><div class="line">            mPopupMenu = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    Menu menu = mPopupMenu.getMenu();</div><div class="line">    <span class="keyword">if</span> (activity.onPrepareOptionsMenu(menu)) &#123;</div><div class="line">        mOverflowMenuShowing = <span class="keyword">true</span>;</div><div class="line">        mPopupMenu.show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>onCreateOptionsMenu和onPrepareOptionsMenu在browseractivity中被重写。</p>
 
       
     </div>
@@ -561,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-number">1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#地址栏的维护"><span class="nav-number">2.</span> <span class="nav-text">地址栏的维护</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-number">1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#地址栏的维护"><span class="nav-number">2.</span> <span class="nav-text">地址栏的维护</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#menu的创建"><span class="nav-number">3.</span> <span class="nav-text">menu的创建</span></a></li></ol></div>
             
 
           </div>
