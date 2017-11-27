@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/11/analyse-chrome-public/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="启动app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java ChromeLauncherActivity 123456789private final void doOnCreate(Bundle savedInstanceState) &amp;#123;        // This Acti">
-<meta property="og:updated_time" content="2017-11-17T07:21:25.555Z">
+<meta property="og:updated_time" content="2017-11-19T16:27:10.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="chromepublic源码分析">
 <meta name="twitter:description" content="启动app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java ChromeLauncherActivity 123456789private final void doOnCreate(Bundle savedInstanceState) &amp;#123;        // This Acti">
@@ -397,6 +397,7 @@
 <h1 id="menu的创建"><a href="#menu的创建" class="headerlink" title="menu的创建"></a>menu的创建</h1><p>虽然BrowserActivity是自己实现了弹出menu悬浮窗的效果，但是还是借鉴了activity自带的menu的生命周期。减少了维护逻辑的成本。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">showMenu</span><span class="params">(View anchor)</span> </span>&#123;</div><div class="line">    Activity activity = mUiController.getActivity();</div><div class="line">    <span class="keyword">if</span> (mPopupMenu == <span class="keyword">null</span>) &#123;</div><div class="line">        mPopupMenu = <span class="keyword">new</span> PopupMenu(getContext(), anchor);</div><div class="line">        mPopupMenu.setOnMenuItemClickListener(<span class="keyword">this</span>);</div><div class="line">        mPopupMenu.setOnDismissListener(<span class="keyword">this</span>);</div><div class="line">        <span class="keyword">if</span> (!activity.onCreateOptionsMenu(mPopupMenu.getMenu())) &#123;</div><div class="line">            mPopupMenu = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    Menu menu = mPopupMenu.getMenu();</div><div class="line">    <span class="keyword">if</span> (activity.onPrepareOptionsMenu(menu)) &#123;</div><div class="line">        mOverflowMenuShowing = <span class="keyword">true</span>;</div><div class="line">        mPopupMenu.show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>onCreateOptionsMenu和onPrepareOptionsMenu在browseractivity中被重写。</p>
+<p>onOptionsItemSelected负责处理点击事件</p>
 
       
     </div>
