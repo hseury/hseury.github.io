@@ -1111,6 +1111,8 @@
 <p>可见遇到sytem.load()指定路径的so时，如果有依赖关系，就会出现找不到库的问题。假设A.so依赖于B.so，那么</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">System.load(PathToA/A.so);</div><div class="line">System.load(PathToB/B.so);</div></pre></td></tr></table></figure>
 <p>就会出现问题，可以通过hook修改<code>nativeLibraryDirectories</code>的方法来解决。</p>
+<h1 id="persistent-为true，预装时候crash，报找不到类的问题"><a href="#persistent-为true，预装时候crash，报找不到类的问题" class="headerlink" title="persistent 为true，预装时候crash，报找不到类的问题"></a>persistent 为true，预装时候crash，报找不到类的问题</h1><p>一般没有persist属性的应用在进行应用自升级的时候，系统会保证程序运行的状态是OK的，因为在安装应用（应用自升级）的过程中，系统会KILL此应用的进程，同时清理之前在AMS（ActivityManagerService）中记录的此应用进程中的各种组件（Activity，Service,Receiver,ContentProvider），在下次该新版本的应用重新启动时，系统会重新new一个进程并重新加载各种组件运行，所以不会有问题；当应用有persist属性并且生效时（不但要添加persist标签，还要是系统签名或者有系统权限），系统安装新应用的过程与安装不带此属性的过程不同，主要在是因为：系统不会KILL此应用的进程。系统不会清理之前在AMS（ActivityManagerService）中记录的各种组件的信息，只会把新版应用中的各种组件记录到AMS中。这样的话如果前后2个版本的应用的某个组件（如Actvivity）名称没有变化，但是内部增加了很多新的类和新的逻辑实现，就会导致加载的组件有的是新版本的有的是老版本，导致程序功能错乱。</p>
+<p>可以参考<a href="http://blog.csdn.net/asanwang007/article/details/54178350" target="_blank" rel="external">Android应用具有persist属性时如何自升级</a></p>
 
           
         
