@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="参考UI层面 向输入框输入文本信息 输入法流程 重要api123456789public boolean onEvaluateInputViewShown()&amp;#123;  return true;&amp;#125;public boolean onShowInputRequested(int paramInt, boolean paramBoolean)&amp;#123;  return true;&amp;#12">
+<meta name="description" content="参考UI层面 向输入框输入文本信息 输入法流程 输入法相关知识 重要api123456789public boolean onEvaluateInputViewShown()&amp;#123;  return true;&amp;#125;public boolean onShowInputRequested(int paramInt, boolean paramBoolean)&amp;#123;  return t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="everything_about_IME">
+<meta property="og:title" content="输入法IME相关知识备忘">
 <meta property="og:url" content="http://yoursite.com/2017/12/06/everything-about-IME/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
-<meta property="og:description" content="参考UI层面 向输入框输入文本信息 输入法流程 重要api123456789public boolean onEvaluateInputViewShown()&amp;#123;  return true;&amp;#125;public boolean onShowInputRequested(int paramInt, boolean paramBoolean)&amp;#123;  return true;&amp;#12">
-<meta property="og:updated_time" content="2017-12-06T06:30:05.840Z">
+<meta property="og:description" content="参考UI层面 向输入框输入文本信息 输入法流程 输入法相关知识 重要api123456789public boolean onEvaluateInputViewShown()&amp;#123;  return true;&amp;#125;public boolean onShowInputRequested(int paramInt, boolean paramBoolean)&amp;#123;  return t">
+<meta property="og:updated_time" content="2017-12-06T09:54:06.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="everything_about_IME">
-<meta name="twitter:description" content="参考UI层面 向输入框输入文本信息 输入法流程 重要api123456789public boolean onEvaluateInputViewShown()&amp;#123;  return true;&amp;#125;public boolean onShowInputRequested(int paramInt, boolean paramBoolean)&amp;#123;  return true;&amp;#12">
+<meta name="twitter:title" content="输入法IME相关知识备忘">
+<meta name="twitter:description" content="参考UI层面 向输入框输入文本信息 输入法流程 输入法相关知识 重要api123456789public boolean onEvaluateInputViewShown()&amp;#123;  return true;&amp;#125;public boolean onShowInputRequested(int paramInt, boolean paramBoolean)&amp;#123;  return t">
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>everything_about_IME | HSEURY_POINTER</title>
+  <title>输入法IME相关知识备忘 | HSEURY_POINTER</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">everything_about_IME</h1>
+          <h1 class="post-title" itemprop="name headline">输入法IME相关知识备忘</h1>
         
 
         <div class="post-meta">
@@ -326,6 +326,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -333,7 +355,7 @@
 
           
           
-             <span id="/2017/12/06/everything-about-IME/" class="leancloud_visitors" data-flag-title="everything_about_IME">
+             <span id="/2017/12/06/everything-about-IME/" class="leancloud_visitors" data-flag-title="输入法IME相关知识备忘">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -364,6 +386,7 @@
         <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://ju.outofmemory.cn/entry/330425" target="_blank" rel="external">UI层面</a></p>
 <p><a href="http://blog.csdn.net/aiynmimi/article/details/51673862" target="_blank" rel="external">向输入框输入文本信息</a></p>
 <p><a href="http://blog.csdn.net/qq_25827845/article/details/52373345" target="_blank" rel="external">输入法流程</a></p>
+<p><a href="https://notes.wanghao.work/2015-04-01-Create-an-Android-IME.html" target="_blank" rel="external">输入法相关知识</a></p>
 <h1 id="重要api"><a href="#重要api" class="headerlink" title="重要api"></a>重要api</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onEvaluateInputViewShown</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onShowInputRequested</span><span class="params">(<span class="keyword">int</span> paramInt, <span class="keyword">boolean</span> paramBoolean)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
