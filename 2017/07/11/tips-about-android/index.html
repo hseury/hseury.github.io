@@ -1,0 +1,940 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/avatar.jpeg?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="零碎activity-alias在chrome代码中 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓开发过程中的坑备忘">
+<meta property="og:url" content="http://yoursite.com/2017/07/11/tips-about-android/index.html">
+<meta property="og:site_name" content="HSEURY_POINTER">
+<meta property="og:description" content="零碎activity-alias在chrome代码中 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091">
+<meta property="og:updated_time" content="2017-12-04T15:42:48.400Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安卓开发过程中的坑备忘">
+<meta name="twitter:description" content="零碎activity-alias在chrome代码中 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/11/tips-about-android/"/>
+
+
+
+
+
+  <title>安卓开发过程中的坑备忘 | HSEURY_POINTER</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HSEURY_POINTER</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Be kind, always.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-android">
+          <a href="/categories/android" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            android
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/categories/travel" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            穿越世界的旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ios">
+          <a href="/categories/ios" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            ios开发
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-backend">
+          <a href="/categories/backend" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            后台开发
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/11/tips-about-android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hseury">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HSEURY_POINTER">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安卓开发过程中的坑备忘</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T09:09:46+08:00">
+                2017-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/11/tips-about-android/" class="leancloud_visitors" data-flag-title="安卓开发过程中的坑备忘">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h1><h2 id="activity-alias"><a href="#activity-alias" class="headerlink" title="activity-alias"></a>activity-alias</h2><p>在chrome代码中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity-alias</span> <span class="attr">android:name</span>=<span class="string">"com.google.android.apps.chrome.Main"</span></span></div><div class="line">                        <span class="attr">android:targetActivity</span>=<span class="string">"org.chromium.chrome.browser.document.ChromeLauncherActivity"</span></div><div class="line">                        <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.BROWSABLE"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.APP_BROWSER"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.NOTIFICATION_PREFERENCES"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.MULTIWINDOW_LAUNCHER"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- Matches the common case of intents with no MIME type.</span></div><div class="line">                 Make sure to keep in sync with the next filter.  --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.VIEW"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.BROWSABLE"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"googlechrome"</span> /&gt;</span>                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"https"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"about"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"javascript"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- Same filter as above but with MIME types.  Intents that</span></div><div class="line">                 do not specify a MIME type won't match. --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.VIEW"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.BROWSABLE"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"googlechrome"</span> /&gt;</span>                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"https"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"about"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"content"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"javascript"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"text/html"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"text/plain"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"application/xhtml+xml"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- MHTML support, used for snapshots --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.VIEW"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"file"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"content"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"multipart/related"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.VIEW"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.BROWSABLE"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"file"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"content"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:host</span>=<span class="string">"*"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:pathPattern</span>=<span class="string">"/.*\\.mhtml"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:pathPattern</span>=<span class="string">"/.*\\.mht"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!-- Same filter as above but with mimeType="*/*". Used for</span></div><div class="line">                 handling intent send by ShareIt. --&gt;</div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.VIEW"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.BROWSABLE"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"file"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"content"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:host</span>=<span class="string">"*"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"*/*"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:pathPattern</span>=<span class="string">"/.*\\.mhtml"</span>/&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:pathPattern</span>=<span class="string">"/.*\\.mht"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MEDIA_SEARCH"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.speech.action.VOICE_SEARCH_RESULTS"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.nfc.action.NDEF_DISCOVERED"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> /&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">"https"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.SEARCH"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.sec.android.airview.HOVER"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:name</span>=<span class="string">"android.app.searchable"</span></span></div><div class="line">                       <span class="attr">android:resource</span>=<span class="string">"@xml/searchable"</span> /&gt;</div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">activity-alias</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Android可以利用 <activity-alias> 动态改变 App 桌面图标</activity-alias></p>
+<p>可以参考<a href="http://blog.csdn.net/eclipsexys/article/details/53791818" target="_blank" rel="external">动态更换应用Icon</a></p>
+<p>可以参考<a href="http://www.jianshu.com/p/7b52e278508e" target="_blank" rel="external"><activity-alias> 标签的使用</activity-alias></a></p>
+<h1 id="自定义view"><a href="#自定义view" class="headerlink" title="自定义view"></a>自定义view</h1><h2 id="findViewById为空"><a href="#findViewById为空" class="headerlink" title="findViewById为空"></a>findViewById为空</h2><p>在使用Dialog时，在调用dialog.show()方法之后，才能findViewById()找到对象</p>
+<p>如果不调用dialog.show()方法，则findViewById()返回值为空</p>
+<p><a href="http://blog.csdn.net/y12345654321/article/details/72673270" target="_blank" rel="external">从源码看 AlertDialog.getButton(DialogInterface.BUTTON_POSITIVE) 为什么是 null</a></p>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>android:gravity是对元素本身说的，元素本身的文本显示在什么地方。</p>
+<p>android:layout_gravity是相对与它的父元素说的，说明元素显示在父元素的什么位置</p>
+<p>android:padding和android:layout_margin的区别，其实概念很简单，padding是站在父view的角度描述问题，它规定它里面的内容必须与这个父view边界的距离。margin则是站在自己的角度描述问题，规定自己和其他（上下左右）的view之间的距离，如果同一级只有一个view，那么它的效果基本上就和padding一样了。</p>
+<h2 id="view的构造函数"><a href="#view的构造函数" class="headerlink" title="view的构造函数"></a>view的构造函数</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(context, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(context, attrs, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第一属于程序内实例化时采用，之传入Context即可<br>第二个用于layout文件实例化，会把XML内的参数通过AttributeSet带入到View内。<br>第三个主题的style信息，也会从XML里带入</p>
+<h2 id="FrameLayout或者LinearLayout"><a href="#FrameLayout或者LinearLayout" class="headerlink" title="FrameLayout或者LinearLayout"></a>FrameLayout或者LinearLayout</h2><p>成员imageView调用setTransitionX()方法不生效</p>
+<p>不存在的，要确定可见性</p>
+<h2 id="View的scrollTo-方法不生效"><a href="#View的scrollTo-方法不生效" class="headerlink" title="View的scrollTo()方法不生效"></a>View的scrollTo()方法不生效</h2><p>怀疑是view不可见引起的(划掉)</p>
+<p>不存在，可能是scrollto滑动方向与预期的相反导致的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrollTo(<span class="number">144</span>,<span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>本以为是从左向右移动，实际上是从右往左移动。</p>
+<h2 id="View的style文件也会影响view的触发事件"><a href="#View的style文件也会影响view的触发事件" class="headerlink" title="View的style文件也会影响view的触发事件"></a>View的style文件也会影响view的触发事件</h2><p>在代码移植过程中，发现View的onfocuschanged方法一直不能回调</p>
+<p>仔细对比代码也检查不出来哪里出问题了</p>
+<p>后来发现是，当初为了加快移植节奏，样式问题没有调整，style文件没有指定</p>
+<h2 id="ViewPager的事件拦截机制"><a href="#ViewPager的事件拦截机制" class="headerlink" title="ViewPager的事件拦截机制"></a>ViewPager的事件拦截机制</h2><p>onInterceptTouchEvent没有down事件，ontouchevent有move事件?</p>
+<p>首先是一段log：</p>
+<p>log打在这个viewpager的<code>dispatchTouchEvent</code>,<code>onInterceptTouchEvent</code>和<code>onTouchEvent</code>方法中。result表示该方法的返回值。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">07-20 23:56:47.192 10079-10079/com.browser E/check_drag: dispatchTouchEvent event 0</div><div class="line">07-20 23:56:47.192 10079-10079/com.browser E/check_drag: onInterceptTouchEvent event 0 index = 1 2</div><div class="line">07-20 23:56:47.192 10079-10079/com.browser E/check_drag: onInterceptTouchEvent event 1 result = false</div><div class="line">07-20 23:56:47.192 10079-10079/com.browser E/check_drag: onTouchEvent event 0</div><div class="line">07-20 23:56:47.192 10079-10079/com.browser E/check_drag: onTouchEvent event 1 result = true</div><div class="line">07-20 23:56:47.212 10079-10079/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-20 23:56:47.212 10079-10079/com.browser E/check_drag: onTouchEvent event 2</div><div class="line">07-20 23:56:47.212 10079-10079/com.browser E/check_drag: onTouchEvent event 1 result = true</div><div class="line">07-20 23:56:47.342 10079-10079/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-20 23:56:47.342 10079-10079/com.browser E/check_drag: onTouchEvent event 2</div><div class="line">07-20 23:56:47.342 10079-10079/com.browser E/check_drag: onTouchEvent event 1 result = true</div><div class="line">07-20 23:56:47.362 10079-10079/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-20 23:56:47.362 10079-10079/com.browser E/check_drag: onTouchEvent event 2</div><div class="line">07-20 23:56:47.902 10079-10079/com.browser E/check_drag: dispatchTouchEvent event 1</div><div class="line">07-20 23:56:47.902 10079-10079/com.browser E/check_drag: onTouchEvent event 1</div><div class="line">07-20 23:56:47.912 10079-10079/com.browser E/check_drag: onTouchEvent event 1 result = true</div></pre></td></tr></table></figure>
+<p>按照google官方文档的说明：</p>
+<blockquote>
+<p>如果onInterceptTouchEvent方法返回true，那么它将不会收到后续事件，事件将会直接传递给目标的onTouchEvent方法（其实会先传给目标的onTouch方法）<br>如果onInterceptTouchEvent方法返回false，那么所有的后续事件都会先传给onInterceptTouchEvent，然后再传给目标的onTouchEvent方法。</p>
+</blockquote>
+<p>但是，为什么我们在onInterceptTouchEvent方法中返回false之后，却收不到后续的事件呢？？通过实验以及stackoverflow上面的一些问答得知，当我们在onInterceptTouchEvent（）方法中返回false，且View的onTouchEvent返回false的情况下，onInterceptTouchEvent方法才会收到后续的事件。</p>
+<p>将上面程序的<code>onTouchEvent</code>方法强制返回false，得到下面的log。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">07-21 00:06:08.352 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 0</div><div class="line">07-21 00:06:08.352 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 0 index = 1 2</div><div class="line">07-21 00:06:08.352 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 1 result = false</div><div class="line">07-21 00:06:08.382 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-21 00:06:08.382 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 2 index = 1 2</div><div class="line">07-21 00:06:08.382 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 1 result = false</div><div class="line">07-21 00:06:08.402 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-21 00:06:08.402 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 2 index = 1 2</div><div class="line">07-21 00:06:08.402 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 1 result = false</div><div class="line">07-21 00:06:08.562 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-21 00:06:08.562 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 2 index = 1 2</div><div class="line">07-21 00:06:08.562 12604-12604/com.browser E/check_drag: onInterceptTouchEvent event 1 result = true</div><div class="line">07-21 00:06:08.582 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-21 00:06:08.582 12604-12604/com.browser E/check_drag: onTouchEvent event 2</div><div class="line">07-21 00:06:08.602 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-21 00:06:08.602 12604-12604/com.browser E/check_drag: onTouchEvent event 2</div><div class="line">07-21 00:06:08.612 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 2</div><div class="line">07-21 00:06:08.612 12604-12604/com.browser E/check_drag: onTouchEvent event 2</div><div class="line">07-21 00:06:08.612 12604-12604/com.browser E/check_drag: onTouchEvent event 1 result = true</div><div class="line">07-21 00:06:09.612 12604-12604/com.browser E/check_drag: dispatchTouchEvent event 1</div><div class="line">07-21 00:06:09.612 12604-12604/com.browser E/check_drag: onTouchEvent event 1</div><div class="line">07-21 00:06:09.612 12604-12604/com.browser E/check_drag: onTouchEvent event 1 result = true</div></pre></td></tr></table></figure>
+<p>可见，在当前view，dispatchTouchEvent每次手势滑动都会传递，onInterceptTouchEvent返回false，表示不拦截事件，则ontouchevent不调用，onInterceptTouchEvent返回true，表示拦截事件，onTouchEvent会处理，但是如果第一次onTouchEvent返回true，则以后的onInterceptTouchEvent都不会被调用，因为view已经确认要处理事件了。</p>
+<p>虽然这个结果与官方文档的说法有点不同，但实验说明是正确的。仔细想想这样的逻辑也确实非常合理：因为onInterceptTouchEvent方法是用来拦截触摸事件，防止被View捕获。那么现在View在onTouchEvent中返回fTrue，明确声明自己会处理这个触摸事件，那么这个时候就不需要拦截了，因此onInterceptTouchEvent不需要拦截这个事件，那也就没有必要将后续事件再传给它了。</p>
+<p>因此，在dispatchTouchEvent中可以获得所有事件，其他两个方法不会每次事件传递都会调用。</p>
+<p>有时间翻看源码来查看这个机制。（待填坑）</p>
+<h2 id="ListView的adapter中没有数据显示指定view"><a href="#ListView的adapter中没有数据显示指定view" class="headerlink" title="ListView的adapter中没有数据显示指定view"></a>ListView的adapter中没有数据显示指定view</h2><p>当列表为空时，有时需要显示一个特殊的empty view来提示用户，一般情况下，<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;ListView android:id="@+id/list" .../ </div><div class="line">&lt;TextView android:id="@+id/empty" .../</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ListView list= (ListView)findViewById(R.id.mylist); </div><div class="line">TextView tv= (TextView)findViewById(R.id.myempty); </div><div class="line"></div><div class="line">list.setEmptyView(tv);</div></pre></td></tr></table></figure>
+<p> 当列表为空时就会自动显示TextView </p>
+<h2 id="activity相关"><a href="#activity相关" class="headerlink" title="activity相关"></a>activity相关</h2><p> A(singleTask)- B - B finish - A</p>
+<p> 此时A仍然会走onCreate为何？</p>
+<p> 抽象一个简单应用，B的类型为</p>
+<p> standard/singleTop/singleTask/singleInstance</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">07-24 23:55:50.826 18366-18366/org.hseury.androiddemo E/BActivtiy: onPause</div><div class="line">07-24 23:55:50.846 18366-18366/org.hseury.androiddemo E/SplashActivity: onStart</div><div class="line">07-24 23:55:50.846 18366-18366/org.hseury.androiddemo E/SplashActivity: onResume</div><div class="line">07-24 23:55:51.276 18366-18366/org.hseury.androiddemo E/BActivtiy: onStop</div><div class="line">07-24 23:55:51.276 18366-18366/org.hseury.androiddemo E/BActivtiy: onDestroy</div></pre></td></tr></table></figure>
+<p>四种情况下输出的log均一致，应该是遗留代码逻辑问题。</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><h3 id="单例引起的内存泄漏"><a href="#单例引起的内存泄漏" class="headerlink" title="单例引起的内存泄漏"></a>单例引起的内存泄漏</h3><p>以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppManager</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppManager instance;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">AppManager</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">            instance = <span class="keyword">new</span> AppManager(context);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是一个普通的单例模式，当创建这个单例的时候，由于需要传入一个Context，所以这个Context的生命周期的长短至关重要：</p>
+<blockquote>
+<p>传入的是Application的Context：这将没有任何问题，因为单例的生命周期和Application的一样长<br>传入的是Activity的Context：当这个Context所对应的Activity退出时，由于该Context和Activity的生命周期一样长（Activity间接继承于Context），所以当前Activity退出时它的内存并不会被回收，因为单例对象持有该Activity的引用。</p>
+</blockquote>
+<p>可以这样修改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppManager</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AppManager instance;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">AppManager</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="comment">//不管传入什么Context最终将使用Application的Context，而单例的生命周期和应用的一样长，这样就防止了内存泄漏</span></div><div class="line">        <span class="keyword">this</span>.context = context.getApplicationContext(); </div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AppManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance != <span class="keyword">null</span>) &#123;</div><div class="line">            instance = <span class="keyword">new</span> AppManager(context);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="加载so"><a href="#加载so" class="headerlink" title="加载so"></a>加载so</h2><h3 id="静态加载绝对路径的so相互依赖"><a href="#静态加载绝对路径的so相互依赖" class="headerlink" title="静态加载绝对路径的so相互依赖"></a>静态加载绝对路径的so相互依赖</h3><p>5.1源码里</p>
+<p><code>/libcore/luni/src/main/java/java/lang/System.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * See &#123;<span class="doctag">@link</span> Runtime#load&#125;.</div><div class="line"> */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">load</span><span class="params">(String pathName)</span> </span>&#123;</div><div class="line">     Runtime.getRuntime().load(pathName, VMStack.getCallingClassLoader());</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">/**</span></div><div class="line">  * See &#123;<span class="doctag">@link</span> Runtime#loadLibrary&#125;.</div><div class="line">  */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loadLibrary</span><span class="params">(String libName)</span> </span>&#123;</div><div class="line">     Runtime.getRuntime().loadLibrary(libName, VMStack.getCallingClassLoader()); </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>其中<code>VMStack.getCallingClassLoader()</code>返回ClassLoader，这个classloader其实是PathClassLoader(如何得到的)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">  * Returns the defining class loader of the caller's caller.</div><div class="line">  *</div><div class="line">  * <span class="doctag">@return</span> the requested class loader, or &#123;<span class="doctag">@code</span> null&#125; if this is the</div><div class="line">  *         bootstrap class loader.</div><div class="line">  */</div><div class="line">  <span class="function"><span class="keyword">native</span> <span class="keyword">public</span> <span class="keyword">static</span> ClassLoader <span class="title">getCallingClassLoader</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * Loads the given shared library using the given ClassLoader.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">load</span><span class="params">(String absolutePath, ClassLoader loader)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (absolutePath == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"absolutePath == null"</span>);</div><div class="line">    &#125;</div><div class="line">    String error = doLoad(absolutePath, loader);</div><div class="line">    <span class="keyword">if</span> (error != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsatisfiedLinkError(error);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> <span class="comment">/*</span></div><div class="line"> * Searches for and loads the given shared library using the given ClassLoader.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">loadLibrary</span><span class="params">(String libraryName, ClassLoader loader)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (loader != <span class="keyword">null</span>) &#123;</div><div class="line">        String filename = loader.findLibrary(libraryName);</div><div class="line">        <span class="keyword">if</span> (filename == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// It's not necessarily true that the ClassLoader used</span></div><div class="line">            <span class="comment">// System.mapLibraryName, but the default setup does, and it's</span></div><div class="line">            <span class="comment">// misleading to say we didn't find "libMyLibrary.so" when we</span></div><div class="line">            <span class="comment">// actually searched for "liblibMyLibrary.so.so".</span></div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsatisfiedLinkError(loader + <span class="string">" couldn't find \""</span> +</div><div class="line">                                           System.mapLibraryName(libraryName) + <span class="string">"\""</span>);</div><div class="line">        &#125;</div><div class="line">        String error = doLoad(filename, loader);</div><div class="line">        <span class="keyword">if</span> (error != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UnsatisfiedLinkError(error);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    String filename = System.mapLibraryName(libraryName);  ②</div><div class="line">    List&lt;String&gt; candidates = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">    String lastError = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">for</span> (String directory : mLibPaths) &#123;</div><div class="line">        String candidate = directory + filename;</div><div class="line">        candidates.add(candidate);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (IoUtils.canOpenReadOnly(candidate)) &#123;</div><div class="line">            String error = doLoad(candidate, loader);</div><div class="line">            <span class="keyword">if</span> (error == <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">return</span>; <span class="comment">// We successfully loaded the library. Job done.</span></div><div class="line">            &#125;</div><div class="line">            lastError = error;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (lastError != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsatisfiedLinkError(lastError);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsatisfiedLinkError(<span class="string">"Library "</span> + libraryName + <span class="string">" not found; tried "</span> + candidates);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可见，无论是loadLibrary还是load，都会调用到doLoad方法。在此之前，如果是<code>loadLibrary</code>都会根据传入的<code>libraryName</code>来获取对应的<code>filename</code>，这里的<code>libraryName</code>的文件路径就通过<code>loader.findLibrary</code>和<code>System.mapLibraryName</code>来提供。</p>
+<p><code>/libcore/dalvik/src/main/java/dalvik/system/BaseDexClassLoader.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">findLibrary</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">     <span class="keyword">return</span> pathList.findLibrary(name);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>pathList就是我们的DexPathList对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Finds the named native code library on any of the library</div><div class="line"> * directories pointed at by this instance. This will find the</div><div class="line"> * one in the earliest listed directory, ignoring any that are not</div><div class="line"> * readable regular files.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@return</span> the complete path to the library or &#123;<span class="doctag">@code</span> null&#125; if no</div><div class="line"> * library was found</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">findLibrary</span><span class="params">(String libraryName)</span> </span>&#123;</div><div class="line">    String fileName = System.mapLibraryName(libraryName);</div><div class="line">    <span class="keyword">for</span> (File directory : nativeLibraryDirectories) &#123;</div><div class="line">        String path = <span class="keyword">new</span> File(directory, fileName).getPath();</div><div class="line">        <span class="keyword">if</span> (IoUtils.canOpenReadOnly(path)) &#123;</div><div class="line">            <span class="keyword">return</span> path;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到<code>loader.findLibrary</code>走到最后也是走到<code>System.mapLibraryName</code>来提取路径的。但是findLibrary通过<code>nativeLibraryDirectories</code>来组成路径，②处是通过<code>mLibPath</code>来组成路径。其中的<code>getNativeLibraryDirectories</code>是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** List of native library directories. */</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> File[] nativeLibraryDirectories;</div></pre></td></tr></table></figure>
+<p>这个<code>nativeLibraryDirectories</code>就是我们的自己项目中jniLibs下对应的so文件的路径。在构造函数中赋值。</p>
+<p><code>/libcore/dalvik/src/main/java/dalvik/system/DexPathList.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Constructs an instance.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> definingContext the context in which any as-yet unresolved</div><div class="line"> * classes should be defined</div><div class="line"> * <span class="doctag">@param</span> dexPath list of dex/resource path elements, separated by</div><div class="line"> * &#123;<span class="doctag">@code</span> File.pathSeparator&#125;</div><div class="line"> * <span class="doctag">@param</span> libraryPath list of native library directory path elements,</div><div class="line"> * separated by &#123;<span class="doctag">@code</span> File.pathSeparator&#125;</div><div class="line"> * <span class="doctag">@param</span> optimizedDirectory directory where optimized &#123;<span class="doctag">@code</span> .dex&#125; files</div><div class="line"> * should be found and written to, or &#123;<span class="doctag">@code</span> null&#125; to use the default</div><div class="line"> * system directory for same</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">DexPathList</span><span class="params">(ClassLoader definingContext, String dexPath,</span></span></div><div class="line">        String libraryPath, File optimizedDirectory) &#123;</div><div class="line">    ......    </div><div class="line">    <span class="keyword">this</span>.nativeLibraryDirectories = splitLibraryPath(libraryPath);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Splits the given library directory path string into elements</div><div class="line"> * using the path separator (&#123;<span class="doctag">@code</span> File.pathSeparator&#125;, which</div><div class="line"> * defaults to &#123;<span class="doctag">@code</span> ":"&#125; on Android, appending on the elements</div><div class="line"> * from the system library path, and pruning out any elements that</div><div class="line"> * do not refer to existing and readable directories.</div><div class="line"> */</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> File[] splitLibraryPath(String path) &#123;</div><div class="line">    <span class="comment">// Native libraries may exist in both the system and</span></div><div class="line">    <span class="comment">// application library paths, and we use this search order:</span></div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="comment">//   1. this class loader's library path for application libraries</span></div><div class="line">    <span class="comment">//   2. the VM's library path from the system property for system libraries</span></div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="comment">// This order was reversed prior to Gingerbread; see http://b/2933456.</span></div><div class="line">    ArrayList&lt;File&gt; result = splitPaths(path, System.getProperty(<span class="string">"java.library.path"</span>), <span class="keyword">true</span>);</div><div class="line">    <span class="keyword">return</span> result.toArray(<span class="keyword">new</span> File[result.size()]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DexPathList构造函数在<code>BaseDexClassLoader</code>构造函数中调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Constructs an instance.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> dexPath the list of jar/apk files containing classes and</div><div class="line"> * resources, delimited by &#123;<span class="doctag">@code</span> File.pathSeparator&#125;, which</div><div class="line"> * defaults to &#123;<span class="doctag">@code</span> ":"&#125; on Android</div><div class="line"> * <span class="doctag">@param</span> optimizedDirectory directory where optimized dex files</div><div class="line"> * should be written; may be &#123;<span class="doctag">@code</span> null&#125;</div><div class="line"> * <span class="doctag">@param</span> libraryPath the list of directories containing native</div><div class="line"> * libraries, delimited by &#123;<span class="doctag">@code</span> File.pathSeparator&#125;; may be</div><div class="line"> * &#123;<span class="doctag">@code</span> null&#125;</div><div class="line"> * <span class="doctag">@param</span> parent the parent class loader</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">BaseDexClassLoader</span><span class="params">(String dexPath, File optimizedDirectory,</span></span></div><div class="line">        String libraryPath, ClassLoader parent) &#123;</div><div class="line">    <span class="keyword">super</span>(parent);</div><div class="line">    <span class="keyword">this</span>.pathList = <span class="keyword">new</span> DexPathList(<span class="keyword">this</span>, dexPath, libraryPath, optimizedDirectory);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最终在<code>/libcore/libart/src/main/java/java/lang/ClassLoader.java</code>中看到classPath的赋值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Create the system class loader. Note this is NOT the bootstrap class</div><div class="line"> * loader (which is managed by the VM). We use a null value for the parent</div><div class="line"> * to indicate that the bootstrap loader is our parent.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> ClassLoader <span class="title">createSystemClassLoader</span><span class="params">()</span> </span>&#123;</div><div class="line">    String classPath = System.getProperty(<span class="string">"java.class.path"</span>, <span class="string">"."</span>);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PathClassLoader(classPath, BootClassLoader.getInstance());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Constructs an instance.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> dexPath the list of jar/apk files containing classes and</div><div class="line"> * resources, delimited by &#123;<span class="doctag">@code</span> File.pathSeparator&#125;, which</div><div class="line"> * defaults to &#123;<span class="doctag">@code</span> ":"&#125; on Android</div><div class="line"> * <span class="doctag">@param</span> optimizedDirectory directory where optimized dex files</div><div class="line"> * should be written; may be &#123;<span class="doctag">@code</span> null&#125;</div><div class="line"> * <span class="doctag">@param</span> libraryPath the list of directories containing native</div><div class="line"> * libraries, delimited by &#123;<span class="doctag">@code</span> File.pathSeparator&#125;; may be</div><div class="line"> * &#123;<span class="doctag">@code</span> null&#125;</div><div class="line"> * <span class="doctag">@param</span> parent the parent class loader</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">BaseDexClassLoader</span><span class="params">(String dexPath, File optimizedDirectory,</span></span></div><div class="line">        String libraryPath, ClassLoader parent) &#123;</div><div class="line">    <span class="keyword">super</span>(parent);</div><div class="line">    <span class="keyword">this</span>.pathList = <span class="keyword">new</span> DexPathList(<span class="keyword">this</span>, dexPath, libraryPath, optimizedDirectory);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">doLoad</span><span class="params">(String name, ClassLoader loader)</span> </span>&#123;</div><div class="line">        <span class="comment">// Android apps are forked from the zygote, so they can't have a custom LD_LIBRARY_PATH,</span></div><div class="line">        <span class="comment">// which means that by default an app's shared library directory isn't on LD_LIBRARY_PATH.</span></div><div class="line"></div><div class="line">        <span class="comment">// The PathClassLoader set up by frameworks/base knows the appropriate path, so we can load</span></div><div class="line">        <span class="comment">// libraries with no dependencies just fine, but an app that has multiple libraries that</span></div><div class="line">        <span class="comment">// depend on each other needed to load them in most-dependent-first order.</span></div><div class="line"></div><div class="line">        <span class="comment">// We added API to Android's dynamic linker so we can update the library path used for</span></div><div class="line">        <span class="comment">// the currently-running process. We pull the desired path out of the ClassLoader here</span></div><div class="line">        <span class="comment">// and pass it to nativeLoad so that it can call the private dynamic linker API.</span></div><div class="line"></div><div class="line">        <span class="comment">// We didn't just change frameworks/base to update the LD_LIBRARY_PATH once at the</span></div><div class="line">        <span class="comment">// beginning because multiple apks can run in the same process and third party code can</span></div><div class="line">        <span class="comment">// use its own BaseDexClassLoader.</span></div><div class="line"></div><div class="line">        <span class="comment">// We didn't just add a dlopen_with_custom_LD_LIBRARY_PATH call because we wanted any</span></div><div class="line">        <span class="comment">// dlopen(3) calls made from a .so's JNI_OnLoad to work too.</span></div><div class="line"></div><div class="line">        <span class="comment">// So, find out what the native library search path is for the ClassLoader in question...</span></div><div class="line">        String ldLibraryPath = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span> (loader != <span class="keyword">null</span> &amp;&amp; loader <span class="keyword">instanceof</span> BaseDexClassLoader) &#123;</div><div class="line">            ldLibraryPath = ((BaseDexClassLoader) loader).getLdLibraryPath();</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// nativeLoad should be synchronized so there's only one LD_LIBRARY_PATH in use regardless</span></div><div class="line">        <span class="comment">// of how many ClassLoaders are in the system, but dalvik doesn't support synchronized</span></div><div class="line">        <span class="comment">// internal natives.</span></div><div class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">            <span class="keyword">return</span> nativeLoad(name, loader, ldLibraryPath);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>最终都会走到nativeLoad方法，通过jni去调用c++代码，通过synchronized可见，这个操作是加锁的。其中这个<code>LD_LIBRARY_PATH</code>是从pathlist中取getNativeLibraryDirectories。</p>
+<p><code>/libcore/dalvik/src/main/java/dalvik/system/BaseDexClassLoader.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@hide</span></div><div class="line"> */</div><div class="line"> <span class="function"><span class="keyword">public</span> String <span class="title">getLdLibraryPath</span><span class="params">()</span> </span>&#123;</div><div class="line">     StringBuilder result = <span class="keyword">new</span> StringBuilder();</div><div class="line">     <span class="keyword">for</span> (File directory : pathList.getNativeLibraryDirectories()) &#123;</div><div class="line">         <span class="keyword">if</span> (result.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">             result.append(<span class="string">':'</span>);</div><div class="line">         &#125;</div><div class="line">         result.append(directory);</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> result.toString();</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>通过反射，可以把这个路径<code>nativeLibraryDirectories</code>打印出来</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">07-30 20:38:12.362 26198-26198/org.hseury.testtt E/hseury: path = /data/app-lib/org.hseury.testtt-3</div><div class="line">07-30 20:38:12.362 26198-26198/org.hseury.testtt E/hseury: path = /vendor/lib</div><div class="line">07-30 20:38:12.362 26198-26198/org.hseury.testtt E/hseury: path = /system/lib</div></pre></td></tr></table></figure>
+<p>可见遇到sytem.load()指定路径的so时，如果有依赖关系，就会出现找不到库的问题。假设A.so依赖于B.so，那么</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">System.load(PathToA/A.so);</div><div class="line">System.load(PathToB/B.so);</div></pre></td></tr></table></figure>
+<p>就会出现问题，可以通过hook修改<code>nativeLibraryDirectories</code>的方法来解决。</p>
+<h1 id="persistent-为true，预装时候crash，报找不到类的问题"><a href="#persistent-为true，预装时候crash，报找不到类的问题" class="headerlink" title="persistent 为true，预装时候crash，报找不到类的问题"></a>persistent 为true，预装时候crash，报找不到类的问题</h1><p>一般没有persist属性的应用在进行应用自升级的时候，系统会保证程序运行的状态是OK的，因为在安装应用（应用自升级）的过程中，系统会KILL此应用的进程，同时清理之前在AMS（ActivityManagerService）中记录的此应用进程中的各种组件（Activity，Service,Receiver,ContentProvider），在下次该新版本的应用重新启动时，系统会重新new一个进程并重新加载各种组件运行，所以不会有问题；当应用有persist属性并且生效时（不但要添加persist标签，还要是系统签名或者有系统权限），系统安装新应用的过程与安装不带此属性的过程不同，主要在是因为：系统不会KILL此应用的进程。系统不会清理之前在AMS（ActivityManagerService）中记录的各种组件的信息，只会把新版应用中的各种组件记录到AMS中。这样的话如果前后2个版本的应用的某个组件（如Actvivity）名称没有变化，但是内部增加了很多新的类和新的逻辑实现，就会导致加载的组件有的是新版本的有的是老版本，导致程序功能错乱。</p>
+<p>可以参考<a href="http://blog.csdn.net/asanwang007/article/details/54178350" target="_blank" rel="external">Android应用具有persist属性时如何自升级</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/04/problems-about-webview-android/" rel="next" title="Android WebView 各种坑">
+                <i class="fa fa-chevron-left"></i> Android WebView 各种坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/25/highway-to-Ios/" rel="prev" title="Ios高速之路">
+                Ios高速之路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="hseury" />
+          <p class="site-author-name" itemprop="name">hseury</p>
+           
+              <p class="site-description motion-element" itemprop="description">It takes everything.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#零碎"><span class="nav-number">1.</span> <span class="nav-text">零碎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#activity-alias"><span class="nav-number">1.1.</span> <span class="nav-text">activity-alias</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义view"><span class="nav-number">2.</span> <span class="nav-text">自定义view</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#findViewById为空"><span class="nav-number">2.1.</span> <span class="nav-text">findViewById为空</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布局"><span class="nav-number">2.2.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#view的构造函数"><span class="nav-number">2.3.</span> <span class="nav-text">view的构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FrameLayout或者LinearLayout"><span class="nav-number">2.4.</span> <span class="nav-text">FrameLayout或者LinearLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View的scrollTo-方法不生效"><span class="nav-number">2.5.</span> <span class="nav-text">View的scrollTo()方法不生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View的style文件也会影响view的触发事件"><span class="nav-number">2.6.</span> <span class="nav-text">View的style文件也会影响view的触发事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewPager的事件拦截机制"><span class="nav-number">2.7.</span> <span class="nav-text">ViewPager的事件拦截机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView的adapter中没有数据显示指定view"><span class="nav-number">2.8.</span> <span class="nav-text">ListView的adapter中没有数据显示指定view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#activity相关"><span class="nav-number">2.9.</span> <span class="nav-text">activity相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">2.10.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单例引起的内存泄漏"><span class="nav-number">2.10.1.</span> <span class="nav-text">单例引起的内存泄漏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载so"><span class="nav-number">2.11.</span> <span class="nav-text">加载so</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态加载绝对路径的so相互依赖"><span class="nav-number">2.11.1.</span> <span class="nav-text">静态加载绝对路径的so相互依赖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#persistent-为true，预装时候crash，报找不到类的问题"><span class="nav-number">3.</span> <span class="nav-text">persistent 为true，预装时候crash，报找不到类的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hseury</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2137619"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G5Gx27o48b9rkGKbW2mLP0lX-gzGzoHsz", "VojNz6ENWKxPoQLbOSfC0kTA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
