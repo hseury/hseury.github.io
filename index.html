@@ -388,7 +388,33 @@
       
         
           
-            <h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><h1 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h1><h1 id="应用安装、更新、卸载时的数据加载"><a href="#应用安装、更新、卸载时的数据加载" class="headerlink" title="应用安装、更新、卸载时的数据加载"></a>应用安装、更新、卸载时的数据加载</h1><h1 id="Workspace滑动"><a href="#Workspace滑动" class="headerlink" title="Workspace滑动"></a>Workspace滑动</h1><h1 id="拖曳事件"><a href="#拖曳事件" class="headerlink" title="拖曳事件"></a>拖曳事件</h1>
+            <h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><hr>
+<p>主布局<code>launcher.xml</code>中， 最外层是<code>LauncherRootView</code>，重写了一个方法， View.fitSystemWindow(rect), 如果你的View在status bar或者navigation bar之下，那么这个方法会传递进去一个参数，说明这个View的四周有多少是被status bar或者navigation bar挡住了的。</p>
+<blockquote>
+<p>Called by the view hierarchy when the content insets for a window have changed, to allow it to adjust its content to fit within those windows. The content insets tell you the space that the status bar, input method, and other system windows infringe on the application’s window.</p>
+</blockquote>
+<p>这个方法的会调用父类的setInsets()方法，我们来看看父类InsettableFrameLayout。</p>
+<p>InsettableFrameLayout继承了FrameLayout， 并且实现了父类的一些方法，总的来说，他的目的就是给子View都设定一个Margin值，防止被status bar或者navigation bar挡住。如果一个View已经是<code>Insettable</code>(一个接口)的了，那么就忽略他。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInsets</span><span class="params">(Rect insets)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> n = getChildCount();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">        <span class="keyword">final</span> View child = getChildAt(i);</div><div class="line">        setFrameLayoutChildInsets(child, insets, mInsets);</div><div class="line">    &#125;</div><div class="line">    mInsets.set(insets);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFrameLayoutChildInsets</span><span class="params">(View child, Rect newInsets, Rect oldInsets)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> LayoutParams lp = (LayoutParams) child.getLayoutParams();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (child <span class="keyword">instanceof</span> Insettable) &#123;</div><div class="line">        ((Insettable) child).setInsets(newInsets);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!lp.ignoreInsets) &#123;</div><div class="line">        lp.topMargin += (newInsets.top - oldInsets.top);</div><div class="line">        lp.leftMargin += (newInsets.left - oldInsets.left);</div><div class="line">        lp.rightMargin += (newInsets.right - oldInsets.right);</div><div class="line">        lp.bottomMargin += (newInsets.bottom - oldInsets.bottom);</div><div class="line">    &#125;</div><div class="line">    child.setLayoutParams(lp);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Launcher3中，Workspace， DragLayer和AppsCustomizeTabHost都实现了这个接口，那么他们自身就不会被加Margin， 而搜索栏和Hotseat都没有实现这个接口，那么说明他们在被加到父亲上得时候会被设一个Margin，最后的到得效果就是搜索栏刚好在status bar之下（gravity为top，topmargin是status bar的高度），Hotseat刚好在navigation bar的上方（gravity为bottom，bottomMargin为navigation bar的高度）</p>
+<p><code>DragLayer</code></p>
+<p>一个协调处理它的子view拖动的容器.</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_31530015/article/details/51548413" target="_blank" rel="external">Android4.4-Launcher源码分析系列之关键的类和接口之DragLayer</a></li>
+</ul>
+<p><code>Workspace</code></p>
+<p>抽象的桌面。由N个celllaout组成，从CellLayout更高一级的层面上对事件的处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Workspace</span> <span class="keyword">extends</span> <span class="title">SmoothPagedView</span> <span class="keyword">implements</span> <span class="title">DropTarget</span>, <span class="title">DragSource</span>, <span class="title">DragScroller</span>, <span class="title">View</span>.<span class="title">OnTouchListener</span>,  </span></div><div class="line">        <span class="title">DragController</span>.<span class="title">DragListener</span>, <span class="title">LauncherTransitionable</span>, <span class="title">ViewGroup</span>.<span class="title">OnHierarchyChangeListener</span>,  </div><div class="line">        <span class="title">Insettable</span> &#123;</div><div class="line">        	.......</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="http://blog.csdn.net/qq_31530015/article/details/51577154" target="_blank" rel="external">Android4.4-Launcher源码分析系列之WorkSpace及屏幕滑动</a></li>
+</ul>
+<p>既是一个拖动的容器也是一个拖动的源</p>
+<p><code>Hotseat</code></p>
+<p>Hotseat里面其实也是一个CellLayout负责管理内部的元素。</p>
+<p><code>PageIndicator</code></p>
+<p>dock栏上面的点点，默认横屏状态下没有。</p>
+<h1 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h1><h1 id="应用安装、更新、卸载时的数据加载"><a href="#应用安装、更新、卸载时的数据加载" class="headerlink" title="应用安装、更新、卸载时的数据加载"></a>应用安装、更新、卸载时的数据加载</h1><h1 id="Workspace滑动"><a href="#Workspace滑动" class="headerlink" title="Workspace滑动"></a>Workspace滑动</h1><h1 id="拖曳事件"><a href="#拖曳事件" class="headerlink" title="拖曳事件"></a>拖曳事件</h1><p>acceptDrop函数用来判断dropTarget是否可以接受item放置在自己里面。</p>
+
           
         
       
