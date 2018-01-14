@@ -420,6 +420,10 @@
 <p><code>LauncherProvider</code><br>继承ContentProvider,主要是处理数据库操作;</p>
 <p><code>LauncherAppState</code><br>单例模式的全局管理类,主要是初始化一些对象,注册广播等.</p>
 <p>默认数据写在<code>default_workspace_4x4.xml</code>,<code>default_workspace_5x5.xml</code>和<code>default_workspace_5x6.xml</code>这几个xml文件中</p>
+<p>当所有信息初始化完成后，就开始调用mModel.startLoader方法来加载应用数据。</p>
+<p><code>loadAndBindWorkspace</code>方法，加载workspace的应用并且进行绑定，content里面取。</p>
+<p><code>waitForIdle</code>方法，改方法主要是等待加载数据结束</p>
+<p><code>loadAndBindAllApps</code>方法，加载第二层的多有图标信息</p>
 <h1 id="应用安装、更新、卸载时的数据加载"><a href="#应用安装、更新、卸载时的数据加载" class="headerlink" title="应用安装、更新、卸载时的数据加载"></a>应用安装、更新、卸载时的数据加载</h1><h1 id="Workspace滑动"><a href="#Workspace滑动" class="headerlink" title="Workspace滑动"></a>Workspace滑动</h1><h1 id="拖曳事件"><a href="#拖曳事件" class="headerlink" title="拖曳事件"></a>拖曳事件</h1><p>acceptDrop函数用来判断dropTarget是否可以接受item放置在自己里面。</p>
 
           
