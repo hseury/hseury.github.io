@@ -99,6 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/01/backend-develop/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="不要求特别精通后台开发，了解和熟悉接口如何处理  事件驱动编程路由指向客户端提供它所发出的请求的内容的机制 请求和响应对象url的组成部分示例：  http://www.bing.com/search?q=grunt&amp;amp;first=9#history  协议http, https, file, ftp 主机名www.bing.com 端口路径search 查询字符串?q=grunt&amp;amp">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-10-01T14:08:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="后台开发备忘">
@@ -389,15 +390,15 @@
 <h1 id="事件驱动编程"><a href="#事件驱动编程" class="headerlink" title="事件驱动编程"></a>事件驱动编程</h1><h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>指向客户端提供它所发出的请求的内容的机制</p>
 <h1 id="请求和响应对象"><a href="#请求和响应对象" class="headerlink" title="请求和响应对象"></a>请求和响应对象</h1><h2 id="url的组成部分"><a href="#url的组成部分" class="headerlink" title="url的组成部分"></a>url的组成部分</h2><p>示例：</p>
 <blockquote>
-<p><a href="http://www.bing.com/search?q=grunt&amp;first=9#history" target="_blank" rel="external">http://www.bing.com/search?q=grunt&amp;first=9#history</a></p>
+<p><a href="http://www.bing.com/search?q=grunt&amp;first=9#history" target="_blank" rel="noopener">http://www.bing.com/search?q=grunt&amp;first=9#history</a></p>
 </blockquote>
 <h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><code>http</code>, <code>https</code>, <code>file</code>, <code>ftp</code></p>
-<h3 id="主机名"><a href="#主机名" class="headerlink" title="主机名"></a>主机名</h3><p>www.bing.com</p>
+<h3 id="主机名"><a href="#主机名" class="headerlink" title="主机名"></a>主机名</h3><p><a href="http://www.bing.com" target="_blank" rel="noopener">www.bing.com</a></p>
 <h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><p>search</p>
 <h3 id="查询字符串"><a href="#查询字符串" class="headerlink" title="查询字符串"></a>查询字符串</h3><p>?q=grunt&amp;first=9</p>
 <h3 id="信息片段"><a href="#信息片段" class="headerlink" title="信息片段"></a>信息片段</h3><p>仅在浏览器使用，不会传递到服务器</p>
 <p>#history</p>
-<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="重复启动web-app"><a href="#重复启动web-app" class="headerlink" title="重复启动web app"></a>重复启动web app</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i :8080 | grep LISTEN</div></pre></td></tr></table></figure>
+<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="重复启动web-app"><a href="#重复启动web-app" class="headerlink" title="重复启动web app"></a>重复启动web app</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :8080 | grep LISTEN</span><br></pre></td></tr></table></figure>
 <p>拿到进程号之后kill掉</p>
 
       

@@ -99,6 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/19/android-permission/index.html">
 <meta property="og:site_name" content="HSEURY_POINTER">
 <meta property="og:description" content="1231|q201:/ # ls -l data/datatotal 1104-rwxr-x--x system   system       4156 2012-06-30 16:12 test.apk. 代表的是相应的用户/用户组及其他人对此文件的访问权限，与此文件运行起来具有的权限完全不相关比如上面的例子只能说明system用户拥有对此文件的读写执行权限；system组的用户对此文件拥有读、">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-19T08:48:53.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓中的权限">
@@ -383,11 +384,11 @@
       
 
       
-        <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1|q201:/ # ls -l data/data</div><div class="line">total 1104</div><div class="line">-rwxr-x--x system   system       4156 2012-06-30 16:12 test.apk.</div></pre></td></tr></table></figure>
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1|q201:/ # ls -l data/data</span><br><span class="line">total 1104</span><br><span class="line">-rwxr-x--x system   system       4156 2012-06-30 16:12 test.apk.</span><br></pre></td></tr></table></figure>
 <p>代表的是相应的<code>用户/用户组</code>及其他人对此文件的访问权限，与此文件运行起来具有的权限完全不相关<br>比如上面的例子只能说明system用户拥有对此文件的读写执行权限；system组的用户对此文件拥有读、执行权限；其他人对此文件只具有执行权限。而<code>test.apk</code>运行起来后可以干哪些事情，跟这个就不相关了。<br>千万不要看apk文件系统上属于<code>system/system用户及用户组</code>，或者<code>root/root用户及用户组</code>，就认为apk具有<code>system</code>或<code>root</code>权限。apk程序是运行在虚拟机上的,对应的是Android独特的权限机制，只有体现到文件系统上时才使用linux的权限设置。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drwx------ 4 u0_a24    u0_a24    4096 2015-01-01 00:00 org.chromium.webview_shell</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwx------ 4 u0_a24    u0_a24    4096 2015-01-01 00:00 org.chromium.webview_shell</span><br></pre></td></tr></table></figure>
 <p>这是<code>/data/data</code>目录下的文件，可以看到只有UserID为u0_a24的程序才能读写该文件。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/22620803" target="_blank" rel="external">关于android UID u0_axx是怎么来的</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/22620803" target="_blank" rel="noopener">关于android UID u0_axx是怎么来的</a></p>
 
       
     </div>
