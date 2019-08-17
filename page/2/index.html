@@ -288,6 +288,478 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/01/spring-boot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hseury">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HSEURY_POINTER">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/01/spring-boot/" itemprop="url">SpringBoot初体验</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T22:08:49+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/backend/" itemprop="url" rel="index">
+                    <span itemprop="name">backend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/01/spring-boot/" class="leancloud_visitors" data-flag-title="SpringBoot初体验">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>选择SpringBoot作为后台开发的框架，主要原因是自己对于java比对javescript更为熟悉</p>
+</blockquote>
+<h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><p>IDEA 2017<br>JDK 1.8<br>MAVEN 3.5.0</p>
+<h1 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.http.MediaType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/SpringBoot"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/hello"</span>,method = RequestMethod.GET,produces = &#123;MediaType.APPLICATION_JSON_VALUE&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">helloSpringBoot</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello SpringBoot!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map <span class="title">getUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Map map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"name"</span>,<span class="string">"hseury"</span>);</span><br><span class="line">        map.put(<span class="string">"age"</span>,<span class="string">"25"</span>);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2017/10/01/spring-boot/hello.png" alt="hello接口"></p>
+<p><img src="/2017/10/01/spring-boot/user.png" alt="user接口"></p>
+<p><code>@RequestMapping</code>注解提供“路由”信息。<br><code>@RestController</code>注解告诉Spring将生成的字符串直接返回给调用者。<br><code>@SpringBootApplication</code>注解相当于使用<code>@Configuration</code>，<code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>和他们的默认属性。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/01/backend-develop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hseury">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HSEURY_POINTER">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/01/backend-develop/" itemprop="url">后台开发备忘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T14:31:50+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/backend/" itemprop="url" rel="index">
+                    <span itemprop="name">backend</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/01/backend-develop/" class="leancloud_visitors" data-flag-title="后台开发备忘">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>不要求特别精通后台开发，了解和熟悉接口如何处理</p>
+</blockquote>
+<h1 id="事件驱动编程"><a href="#事件驱动编程" class="headerlink" title="事件驱动编程"></a>事件驱动编程</h1><h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>指向客户端提供它所发出的请求的内容的机制</p>
+<h1 id="请求和响应对象"><a href="#请求和响应对象" class="headerlink" title="请求和响应对象"></a>请求和响应对象</h1><h2 id="url的组成部分"><a href="#url的组成部分" class="headerlink" title="url的组成部分"></a>url的组成部分</h2><p>示例：</p>
+<blockquote>
+<p><a href="http://www.bing.com/search?q=grunt&amp;first=9#history" target="_blank" rel="noopener">http://www.bing.com/search?q=grunt&amp;first=9#history</a></p>
+</blockquote>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><code>http</code>, <code>https</code>, <code>file</code>, <code>ftp</code></p>
+<h3 id="主机名"><a href="#主机名" class="headerlink" title="主机名"></a>主机名</h3><p><a href="http://www.bing.com" target="_blank" rel="noopener">www.bing.com</a></p>
+<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><p>search</p>
+<h3 id="查询字符串"><a href="#查询字符串" class="headerlink" title="查询字符串"></a>查询字符串</h3><p>?q=grunt&amp;first=9</p>
+<h3 id="信息片段"><a href="#信息片段" class="headerlink" title="信息片段"></a>信息片段</h3><p>仅在浏览器使用，不会传递到服务器</p>
+<p>#history</p>
+<h1 id="踩过的坑"><a href="#踩过的坑" class="headerlink" title="踩过的坑"></a>踩过的坑</h1><h2 id="重复启动web-app"><a href="#重复启动web-app" class="headerlink" title="重复启动web app"></a>重复启动web app</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :8080 | grep LISTEN</span><br></pre></td></tr></table></figure>
+<p>拿到进程号之后kill掉</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/11/analyse-chrome-public/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hseury">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HSEURY_POINTER">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/11/analyse-chrome-public/" itemprop="url">chromepublic源码分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T23:02:52+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/11/analyse-chrome-public/" class="leancloud_visitors" data-flag-title="chromepublic源码分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><p><code>app/src/main/java/org/chromium/chrome/browser/document/ChromeLauncherActivity.java</code></p>
+<p>ChromeLauncherActivity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">doOnCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// This Activity is only transient. It launches another activity and</span></span><br><span class="line">        <span class="comment">// terminates itself. However, some of the work is performed outside of</span></span><br><span class="line">        <span class="comment">// &#123;@link Activity#onCreate()&#125;. To capture this, the TraceEvent starts</span></span><br><span class="line">        <span class="comment">// in onCreate(), and ends in onPause().</span></span><br><span class="line">        <span class="comment">// Needs to be called as early as possible, to accurately capture the</span></span><br><span class="line">        <span class="comment">// time at which the intent was received.</span></span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>启动后就跳到 CustomTabActivity，并把自己回收掉。</p>
+<p>CustomTabActivity里面有mTab</p>
+<p>Tab类里，有AndroidWindow和ContentViewCore,这些都是webview的内部成员，这里tab直接和webview的组件进行交互，不通过webview来进行回调。</p>
+<h1 id="地址栏的维护"><a href="#地址栏的维护" class="headerlink" title="地址栏的维护"></a>地址栏的维护</h1><p>单tab页，最复杂的就是地址栏的维护</p>
+<p>分为三个状态，正常态(normal),编辑态（edited）,高亮态（highlighted），高亮对应选中整个url链接</p>
+<p>正常态，显示链接的title，左侧没有图标</p>
+<p>点击一下，转化高亮态，此时左边有图标（重新加载），整个title变为网页的url，这个url底色为绿色</p>
+<p>再点击一下，转化为编辑态，此时光标闪动，可以对url进行编辑，此时左侧图标是搜索。</p>
+<h1 id="menu的创建"><a href="#menu的创建" class="headerlink" title="menu的创建"></a>menu的创建</h1><p>虽然BrowserActivity是自己实现了弹出menu悬浮窗的效果，但是还是借鉴了activity自带的menu的生命周期。减少了维护逻辑的成本。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showMenu</span><span class="params">(View anchor)</span> </span>&#123;</span><br><span class="line">    Activity activity = mUiController.getActivity();</span><br><span class="line">    <span class="keyword">if</span> (mPopupMenu == <span class="keyword">null</span>) &#123;</span><br><span class="line">        mPopupMenu = <span class="keyword">new</span> PopupMenu(getContext(), anchor);</span><br><span class="line">        mPopupMenu.setOnMenuItemClickListener(<span class="keyword">this</span>);</span><br><span class="line">        mPopupMenu.setOnDismissListener(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">if</span> (!activity.onCreateOptionsMenu(mPopupMenu.getMenu())) &#123;</span><br><span class="line">            mPopupMenu = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Menu menu = mPopupMenu.getMenu();</span><br><span class="line">    <span class="keyword">if</span> (activity.onPrepareOptionsMenu(menu)) &#123;</span><br><span class="line">        mOverflowMenuShowing = <span class="keyword">true</span>;</span><br><span class="line">        mPopupMenu.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>onCreateOptionsMenu和onPrepareOptionsMenu在browseractivity中被重写。</p>
+<p>onOptionsItemSelected负责处理点击事件</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/25/highway-to-Ios/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1549,534 +2021,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hseury">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HSEURY_POINTER">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/hello-world/" itemprop="url">effect java 读书笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T11:39:00+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/06/12/hello-world/" class="leancloud_visitors" data-flag-title="effect java 读书笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="38-检查参数的有效性"><a href="#38-检查参数的有效性" class="headerlink" title="38 检查参数的有效性"></a>38 检查参数的有效性</h2><p>在方法体的开头检查参数</p>
-<h2 id="39-必要时进行保护性拷贝"><a href="#39-必要时进行保护性拷贝" class="headerlink" title="39 必要时进行保护性拷贝"></a>39 必要时进行保护性拷贝</h2><p>使用备份对象作为类的组件，而不是使用原始的对象</p>
-<h2 id="40-谨慎设计方法签名"><a href="#40-谨慎设计方法签名" class="headerlink" title="40 谨慎设计方法签名"></a>40 谨慎设计方法签名</h2><p>名称/不过于追求便利/避免过长的参数列表(优先使用接口，boolean型优先使用枚举)</p>
-<h2 id="41-慎用重载"><a href="#41-慎用重载" class="headerlink" title="41 慎用重载"></a>41 慎用重载</h2><p>不要导出两个具有相同参数数目的重载方法。</p>
-<h2 id="42-慎用可变参数"><a href="#42-慎用可变参数" class="headerlink" title="42 慎用可变参数"></a>42 慎用可变参数</h2><h2 id="43-返回零长度的数组或者集合，而不是null"><a href="#43-返回零长度的数组或者集合，而不是null" class="headerlink" title="43 返回零长度的数组或者集合，而不是null"></a>43 返回零长度的数组或者集合，而不是null</h2><h2 id="45-局部变量作用域最小化"><a href="#45-局部变量作用域最小化" class="headerlink" title="45 局部变量作用域最小化"></a>45 局部变量作用域最小化</h2><h2 id="46-优先使用foreach循环"><a href="#46-优先使用foreach循环" class="headerlink" title="46 优先使用foreach循环"></a>46 优先使用foreach循环</h2><p>三种情况无法使用foreach循环</p>
-<h2 id="47-了解和使用类库"><a href="#47-了解和使用类库" class="headerlink" title="47 了解和使用类库"></a>47 了解和使用类库</h2><p>不要自己造轮子</p>
-<h2 id="48-精确计算，避免使用float和double"><a href="#48-精确计算，避免使用float和double" class="headerlink" title="48 精确计算，避免使用float和double"></a>48 精确计算，避免使用float和double</h2><h2 id="49-基本类型优先于装箱基本类型"><a href="#49-基本类型优先于装箱基本类型" class="headerlink" title="49 基本类型优先于装箱基本类型"></a>49 基本类型优先于装箱基本类型</h2><h2 id="50-如果其他类型更适合，尽量避免使用字符串"><a href="#50-如果其他类型更适合，尽量避免使用字符串" class="headerlink" title="50 如果其他类型更适合，尽量避免使用字符串"></a>50 如果其他类型更适合，尽量避免使用字符串</h2><h2 id="51-当心字符串连接的性能"><a href="#51-当心字符串连接的性能" class="headerlink" title="51 当心字符串连接的性能"></a>51 当心字符串连接的性能</h2><h2 id="52-通过接口引用对象"><a href="#52-通过接口引用对象" class="headerlink" title="52 通过接口引用对象"></a>52 通过接口引用对象</h2><p>只有在使用构造函数创建对象的时候，才需要引用这个对象的类<br>养成这样的习惯<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Subscriber&gt; subscribes = <span class="keyword">new</span> Vector&lt;Subscriber&gt;();</span><br></pre></td></tr></table></figure></p>
-<h2 id="53-接口优先于反射机制"><a href="#53-接口优先于反射机制" class="headerlink" title="53 接口优先于反射机制"></a>53 接口优先于反射机制</h2><h2 id="54-谨慎地使用本地方法（native-method）"><a href="#54-谨慎地使用本地方法（native-method）" class="headerlink" title="54 谨慎地使用本地方法（native method）"></a>54 谨慎地使用本地方法（native method）</h2><h2 id="55-谨慎地进行优化"><a href="#55-谨慎地进行优化" class="headerlink" title="55 谨慎地进行优化"></a>55 谨慎地进行优化</h2><p>编写好的程序而不是快的程序<br>设计系统时就要考虑性能<br>借助性能分析器来找到问题的根源，然后设法优化系统中相关的部分</p>
-<h2 id="56-遵守普遍接受的明明惯例"><a href="#56-遵守普遍接受的明明惯例" class="headerlink" title="56 遵守普遍接受的明明惯例"></a>56 遵守普遍接受的明明惯例</h2><h1 id="chapter-9-异常"><a href="#chapter-9-异常" class="headerlink" title="chapter 9 异常"></a>chapter 9 异常</h1><h2 id="57-只针对异常的情况才使用异常"><a href="#57-只针对异常的情况才使用异常" class="headerlink" title="57 只针对异常的情况才使用异常"></a>57 只针对异常的情况才使用异常</h2><p>基于异常的模式比标准模式慢得多</p>
-<h2 id="58-对可恢复的情况使用受检异常，对编程错误使用运行时异常"><a href="#58-对可恢复的情况使用受检异常，对编程错误使用运行时异常" class="headerlink" title="58 对可恢复的情况使用受检异常，对编程错误使用运行时异常"></a>58 对可恢复的情况使用受检异常，对编程错误使用运行时异常</h2><p>checked exception/runtime exception/error</p>
-<h1 id="chapter-10-并发"><a href="#chapter-10-并发" class="headerlink" title="chapter 10 并发"></a>chapter 10 并发</h1><h2 id="66-同步访问共享的可变数据"><a href="#66-同步访问共享的可变数据" class="headerlink" title="66 同步访问共享的可变数据"></a>66 同步访问共享的可变数据</h2><p>java规范保证一个变量的读或写是原子的，除了long和double</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/07/st-petersburg/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hseury">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HSEURY_POINTER">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/07/st-petersburg/" itemprop="url">圣彼得堡---我的旅途1/2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-07T22:08:26+08:00">
-                2016-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/travel/" itemprop="url" rel="index">
-                    <span itemprop="name">travel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2016/10/07/st-petersburg/" class="leancloud_visitors" data-flag-title="圣彼得堡---我的旅途1/2">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="启程"><a href="#启程" class="headerlink" title="启程"></a>启程</h2><p>在莫斯科暴走一整个白天之后，我已经相当疲劳了。凌晨坐上莫斯科通往圣彼得堡的夜间火车后，我发现小小车厢内四个人，就我一个是亚洲人。我的上铺是个高大的商务人士（感觉），对面是一个约三十多岁的妈妈和她的小孩，乘务员大妈说了一大堆俄语，我完全听不懂，还是感谢这位妈妈为我翻译成英语，否则我又会再一次体会到语言不通带来的绝望。火车开动之后，我很快进入了梦乡，再一次醒来已经是凌晨6点多，窗外已经开始泛白，我拿出手机看了看，毫无信号，此时的火车就像是一艘在大海上航行的渔船。我想起了很多年以前小学语文课本里的一些课文，窗外倒走的树林，泛出鱼肠白的天际线这些意象一下子填满了我的脑袋。火车到站，走出车厢之后，就被圣彼得堡潮湿的空气刺激到了，天气也和莫斯科的阴沉不同，天空好蓝好漂亮，搭乘地铁，存放完行李之后，就是第一站——冬宫。</p>
-<h2 id="冬宫"><a href="#冬宫" class="headerlink" title="冬宫"></a>冬宫</h2><p>冬宫全称艾尔米塔什博物馆，是世界四大博物馆之一，与巴黎的罗浮宫、伦敦的大英博物馆、纽约的大都会艺术博物馆并称世界四大博物馆。该馆最早是叶卡捷琳娜二世女皇的私人宫邸，位于俄罗斯圣彼得堡涅瓦河畔。博物馆中有1.5万幅绘画，1.2万件雕塑，60万幅线条画作品，100万块硬币和证章，22.4万件古代家具、瓷器、金银制品、宝石与象牙工艺品等。这些工艺品分别陈列在350多个展厅。<br>350个展厅展示了占艾尔米塔什全部珍宝百分之五的收藏品。虽然只有百分之五，一分钟看一件，不眠不休也得花上一个季度才能看完。达·芬奇存世作品只有十幅，艾尔米塔什就拥有两幅。</p>
-<p>接下来是走马观花的图。</p>
-<p><img src="/2016/10/07/st-petersburg/winter_palace_1.png" alt="外观"></p>
-<p><img src="/2016/10/07/st-petersburg/winter_palace_6.png" alt="宫殿"></p>
-<p>冬宫最美的走廊——拉斐尔长廊。俄国女皇叶卡捷琳娜二世，在1775年参观过梵蒂冈的拉菲尔壁画之后，兴起复制壁画的念头，于是派遣画师前往当地临摹，将整座走廊都复制重现在冬宫。因工程浩大，直到1792年才全部完工，历经十七年。</p>
-<p>圣·乔治大厅也叫御座大厅，在冬宫的心脏地带。这个御座大厅建造于叶卡捷琳娜二世（1762-1796）在位期间的1787-1795年，这间别具风格的大厅，完全以严格的古典主义风格建造而成。这个厅的地板和天花板都是一一对称的，实在是让人震惊。</p>
-<p><img src="/2016/10/07/st-petersburg/winter_palace_7.png" alt="御座大厅"></p>
-<p>收藏油画最大的厅，就属这座意大利文艺复兴天窗厅了。</p>
-<p><img src="/2016/10/07/st-petersburg/winter_palace_8.png" alt="文艺复兴天窗厅"></p>
-<p>冬宫实在是个艺术的宝库，漫步其中体会到的是无与伦比的震撼，中学历史课本里学习过的一些知识从记忆深处被唤醒，让我此刻感受到从前的经历并非不值一提，在人生的某一个时刻，它会被重新唤起，这一切都不是没有意义的。我后悔以前对这些东西没有重视，如果我对俄国的历史更加熟悉，我会更加享受这次的参观。</p>
-<p>这次冬宫之旅我也开始意识到，中国的旅游团真多，中国的旅游团真喜欢拍照，相比较而言，日本的游客是比较让人敬佩的，他们很少拍照，一幅油画前可以停留很久，明显可以感受到，他们是真的来参观博物馆的。</p>
-<h2 id="枢密院广场"><a href="#枢密院广场" class="headerlink" title="枢密院广场"></a>枢密院广场</h2><p>枢密院广场是住所和冬宫前的一个小公园，也是我放下行李第一眼看到的圣彼得堡景点，天空蓝得纯净，阳光下的顶泛着金色的光芒。呼吸着圣彼得堡潮湿的空气，我强烈的感受到了另一种美。广场的地面是柔软的湿土，脚踩下去会感到轻微的弹性，还会有砂石摩擦的簌簌的声音。这是我在圣彼得堡最常去的地方，每天都会在长椅上坐上一会儿。</p>
-<p><img src="/2016/10/07/st-petersburg/Senate_Square.png" alt="枢密院广场"></p>
-<p>枢密院广场的不远处，位于俄罗斯圣彼得堡在伊萨基辅大教堂与涅瓦河之间，有”十二月党人”广场·广场中央矗立着彼得大帝的纪念碑，这就是著名的”青铜骑士”雕像，它高5米，重20吨。<br>彼得大帝骑在腾跃的骏马上,精神坚定。马的后蹄踩着一条毒蛇,象征打败敌人。这座纪念碑于1782年8月7日彼得大帝登基100周年的时候揭幕.纪念碑的基石上刻着:”献给彼得大帝,叶卡捷琳娜二世于1782年夏.”普希金在自己的一篇叙事诗中将这座纪念碑称为”青铜骑士”,从此以后,”青铜骑士”就成了彼得大帝纪念碑的代名词.</p>
-<h2 id="圣以撒大教堂"><a href="#圣以撒大教堂" class="headerlink" title="圣以撒大教堂"></a>圣以撒大教堂</h2><p>圣以撒大教堂是圣彼得堡最大的俄罗斯东正教堂，圣以撒大世界上第二大的东正教教堂，仅次于莫斯科的救世主大教堂。高度达到101.5米，是以彼得大帝的主保护圣人——达尔玛蒂亚的圣以撒命名的，始建于1818年，前后花了40年的时间于1858年建成。是由俄罗斯当时的沙皇亚历山大一世命令建造的，采用了新古典主义的建筑风格，是根据法国出生的建筑家奥古斯特·蒙特费兰德的设计方案经修改后建造的。蒙特费兰德在40年间里负责监造这座大教堂，1858年建成时，这位建筑师也离开了人世。十月革命之后，由于它是皇权的象征，停止了宗教活动，一度曾废弃，后改作宗教史及无神论的博物馆。</p>
-<p><img src="/2016/10/07/st-petersburg/St_Isaac_Cathedral.png" alt="圣以撒大教堂"></p>
-<p>登上顶部长廊，就可以把圣彼得堡的城市风光尽收眼底。</p>
-<p><img src="/2016/10/07/st-petersburg/St_Isaac_Cathedral_sunset.png" alt="圣以撒大教堂风光"></p>
-<p>ps 登顶的楼顶很是螺旋式上升的，很绕，爬上爬下我想吐……</p>
-<h2 id="饮食"><a href="#饮食" class="headerlink" title="饮食"></a>饮食</h2><p>喝了啤酒和吃了各种肉，除了新鲜没有其他的感受，我天朝一个火锅就可以爆掉他们~</p>
-<p><img src="/2016/10/07/st-petersburg/Neva_street_singer.png" alt="圣以撒大教堂风光"></p>
-<h2 id="夏宫"><a href="#夏宫" class="headerlink" title="夏宫"></a>夏宫</h2><p>彼得大帝夏宫(Peter the Great’s Summer Palace)，又称“俄罗斯夏宫”、“彼德宫”。它位于芬兰湾南岸的森林中，它距圣彼得堡市约30公里，占地近千公顷，由瑞士人多梅尼克·特列吉尼设计，是历代俄国沙皇的郊外离宫，也是圣彼得堡的早期建筑。夏宫分为上花园和下花园，大宫殿在上花园。 内外装饰极其华丽，两翼均有镀金穹顶，宫内有庆典厅堂。 礼宴厅堂和皇家宫室。 大宫殿前是被称作大瀑布的喷泉群。 这里有37座金色雕像，29座潜浮雕，150个小雕像，64个喷泉及2座梯形瀑布。 在喷泉群一个大半圆形水池的中央，耸立着大力士参孙和狮子搏斗的雕像，这就是著名的隆姆松喷泉。参孙双手把狮子的上下颚撑开，泉水从狮子口中冲天而出，水柱直喷22米之高。这一雕塑象征着俄罗斯战胜瑞典。喷泉群在蓝天白云下，闪耀着鎏金的光辉和水流的银影。黄金色的雕塑沐浴在水幕中，玉珠飞溅，光彩夺目。漫步在幽静高大的森林中，每走一小段路，眼前就会闪烁出飞溅的玉珠。</p>
-<p><img src="/2016/10/07/st-petersburg/summer_palace_fourtain_overview.png" alt="隆姆松喷泉"></p>
-<p>大力士参孙和狮子搏斗的喷泉十分符合我的没血，肌肉喷张，展现了男子汉的力与美。</p>
-<p><img src="/2016/10/07/st-petersburg/summer_palace_fourtain_Poseidon.png" alt="海神喷泉"></p>
-<p>在下花园漫步，可以感受到俄罗斯人变态的对称性，以隆姆松喷泉为轴心，两边的布局基本一毛一样，也就是说，这个花园参观一半就可以了……</p>
-<h2 id="滴血大教堂"><a href="#滴血大教堂" class="headerlink" title="滴血大教堂"></a>滴血大教堂</h2><p>滴血大教堂是圣彼得堡为数不多的传统式东正教堂，教堂上有五光十色的洋葱头顶，反映了俄国十六和十七世纪的典型的东正教教堂建筑风格。教堂轮廓美丽，装饰花花绿绿，与古老俄罗斯风格与附近的古典式的建筑物成鲜明对比。</p>
-<p><img src="/2016/10/07/st-petersburg/IMG_5976.png" alt="滴血大教堂穹顶"></p>
-<p>教堂高度约81米，宽阔的外形，采用了与莫斯科巴克洛夫教堂相同的构造，与华西里教堂的区别在于镶嵌复杂、颜色艳丽的影像图案，用丰富的彩色图案瓷砖、搪瓷青铜板装饰面。</p>
-<p><img src="/2016/10/07/st-petersburg/Church_of_Our_Savior_on_Spilled_Blood_inner.png" alt="滴血大教堂穹顶"></p>
-<h2 id="叶卡捷琳娜宫"><a href="#叶卡捷琳娜宫" class="headerlink" title="叶卡捷琳娜宫"></a>叶卡捷琳娜宫</h2><p>叶卡捷林娜宫又称沙皇村，是叶卡捷琳二世女皇修建的。宫殿的格局则是建筑精巧淫靡，色彩清新柔和，弥漫着女性的柔美、娇媚的风韵。可以说园中到处是诗，到处是画，无处不飘动着令人心醉的旋律，无处不弥漫着花草的芬芳，女皇生前声色犬马、骄奢淫靡的气息依然沁淫着整座园林。天蓝色的外表耀眼夺目，洋溢着喜庆气氛，造型丰富的雕塑和凹凸有致的结构使数百米长的建筑丝毫不显得单调呆板。皇宫教堂那五个圆葱头式尖顶在碧空下金光灿灿，几乎从园内任何地方都远远望得见。</p>
-<p>琥珀屋本身就是个传奇。它是1716年由普鲁士国王威廉一世送给俄罗斯彼得大帝的礼物，墙面镶嵌有6吨多的琥珀和名贵珠宝，闪耀着从柠檬黄到金红色，人类可以想象的黄色系中一切的色彩，辉煌得令人窒息，被列为世界第八大奇迹。“二战”期间，这座宝屋被纳粹劫掠窃取。直到圣彼得堡300年（2003年）纪念的时候，才由俄国巧匠重新复原出了当时的面貌。不过由于这件展厅不允许拍照……所以没图……</p>
-<p>值得一提是宫殿门前的花园，门票只要十块钱人民币，确实我这辈子见过最美的花园。在这里还有活生生的松鼠跳来跳去，人与自然十分和谐。漫步其中，我再也不想举起手中的相机，只想好好地在这里坐着，看风景，呼吸空气，同时在想要是我家医生这时候坐在我旁边该有多好。</p>
-<h2 id="彼得要塞"><a href="#彼得要塞" class="headerlink" title="彼得要塞"></a>彼得要塞</h2><p>这座堡垒由彼得大帝创建于1703年儒略历5月16日（公历5月27日），位于涅瓦河北岸的兔子岛（涅瓦河三角洲最上游的一个岛）。</p>
-<p><img src="/2016/10/07/st-petersburg/IMG_5921.jpg" alt="彼得要塞"></p>
-<p>在大北方战争期间，建此要塞是为了防备瑞典袭击新首都。该堡垒从来没有实现其军事目的。此要塞包括六个堡垒，1706至1740年用石头重建。</p>
-<p><img src="/2016/10/07/st-petersburg/IMG_5897.jpg" alt="涅瓦河"></p>
-<h2 id="涅瓦桥日落和战神广场"><a href="#涅瓦桥日落和战神广场" class="headerlink" title="涅瓦桥日落和战神广场"></a>涅瓦桥日落和战神广场</h2><p>离开彼得要塞，在涅瓦桥上遇到了壮丽的日落，在轰隆的大桥上吸了好久的尾气，拍了好久照片……</p>
-<p><img src="/2016/10/07/st-petersburg/neva_sunset_1.png" alt="涅瓦河日落"></p>
-<p>走过涅瓦桥之后就是战神广场了，北面是大理石宫，南部边界是莫伊卡河。它得名于罗马战神马尔斯，占地面积约9公顷，是圣彼得堡最古老、最美丽的广场之一。广场上栽有大量的丁香花，竖立着俄罗斯著名的苏沃洛夫统帅的塑像，是根据罗马战神马尔斯的形象建造的，因此又称马尔索洛校场。广场一侧是巴普洛夫斯基兵营，兵营大楼宽数百米，雄伟壮观。广场中心是革命英雄纪念碑，从1917年起，“长明火”一直燃烧至今，莫斯科克里姆林宫旁的无名烈士墓的“长明火”的火种也取自这里。以纪念碑为中心，向不同方向延伸出数条林荫道，林荫道之间是点缀着灌木丛的草坪，整个广场处于椴木林和草坪的怀抱之中。可能很多攻略上都不会把这里作为景点，但是我无意间走到这里，在这里我能感受到勇气、历史还有尊重。</p>
-<p><img src="/2016/10/07/st-petersburg/Mars_square.png" alt="战神广场"></p>
-<p>引用下红场无名烈士墓的墓志铭</p>
-<blockquote>
-<p>你的名字无人知晓，你的功勋永垂不朽</p>
-</blockquote>
-<p>也许正是对战士的无限哀思和尊重，才让那么多俄罗斯人前仆后继，舍身战斗，因为他们不怕被遗忘，所以他们不怕死亡。</p>
-<h2 id="返程"><a href="#返程" class="headerlink" title="返程"></a>返程</h2><p>返程并非一帆风顺，被绿绿爆菊之后，让我好几天心里都不舒服，从此我成为了一名反绿斗士，迟早我要干回来。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/06/once-upon-a-time-in-Moscow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hseury">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HSEURY_POINTER">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/06/once-upon-a-time-in-Moscow/" itemprop="url">莫斯科往事---我的旅途1/2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-06T21:47:59+08:00">
-                2016-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/travel/" itemprop="url" rel="index">
-                    <span itemprop="name">travel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2016/10/06/once-upon-a-time-in-Moscow/" class="leancloud_visitors" data-flag-title="莫斯科往事---我的旅途1/2">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="启程"><a href="#启程" class="headerlink" title="启程"></a>启程</h2><p>连续加班三天之后，连衣服都没收拾好，我在一片匆忙之中踏上了北上的旅途，我在俄罗斯的日程安排非常蛋疼，先在莫斯科待一天，然后晚上做火车去圣彼得堡，然后在圣彼得堡待三天，然后晚上再回莫斯科，凌晨到达之后再玩半天，然后回国，而且我回国之后还要继续坐车回家参加总裁的婚礼，而且每段交通工具都不能误点……</p>
-<p>言归正传，在飞机上断断续续睡了十多个小时之后，我终于踏上了俄罗斯的土地，然鹅，排队出关慢的生无可恋，漫长的2小时排队之后，我终于出关，见到了正在毛国留学的梁博，感激梁博在机场等了我2个多小时，还把我送到订的旅馆，没有他我简直在莫斯科活不下去，语言不通去俄罗斯旅游真是史诗难度，放好行李之后，这时候已经是晚上9点多了，梁博带我去商场吃了一顿好的，果酱特别好喝，其他的简直吃不下去，我看了四周，我说这里都坐不满，开不了多久就会关门吧，梁博说，这家店的生意已经很好了，都快坐满了……</p>
-<p>吃完去超市里买了一些需要的东西，梁博还特别热心地告诉我这里哪些店可以喝咖啡哪些店可以吃饼，我一一记下了，不过这没有什么卵用，第二天早上我直接就迷路了，任何店都没有找到~</p>
-<h2 id="莫斯科河-amp-高等经济学院"><a href="#莫斯科河-amp-高等经济学院" class="headerlink" title="莫斯科河 &amp; 高等经济学院"></a>莫斯科河 &amp; 高等经济学院</h2><p>我住的地方就在莫斯科河附近，这条河是莫斯科的母亲河，此时的莫斯科已经是深秋，空气异常潮湿，金黄的树叶飘了一地，非常好看。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/moscow_street.jpg" alt="莫斯科街道"></p>
-<p>街道上人真的很少，很有可能一条路上就只有你自己一个人还有无数只吃得太饱，正在散步消食的鸽子。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/moscow_bird.jpg" alt="街道上的鸽子"></p>
-<p>梁博的宿舍楼让我想起了我还在彰武的时光，一个过道，两排房间，梁博的房间靠南，有一排明亮的窗户，窗外是高大的树木，还有调皮的小鸟在上面叽叽喳喳。每层楼还有一个自习教室，坐在里面，喝着梁博炮制的咖啡，我好像又回到了校园时光，午饭和梁博，梁博的室友匈牙利队长，导游台湾妹子姿懿一起在厨房吃了大盒披萨，看着这群留学生来自不同国家，巴拉巴拉的聊天吃饭，我好羡慕他们，要是自己当时出来读个书该多好。吃完披萨我已经非常困了，在梁博床上坐了会儿直接就睡着了。</p>
-<h2 id="麻雀山-amp-莫斯科大学"><a href="#麻雀山-amp-莫斯科大学" class="headerlink" title="麻雀山 &amp; 莫斯科大学"></a>麻雀山 &amp; 莫斯科大学</h2><p>这一天的游览从麻雀山开始，麻雀山位于莫斯科西南，是莫斯科的最高处，最高处海拔高度为220米，莫斯科河从山脚流过。在麻雀山山顶上有观景台，观景台正对莫斯科大学的正门，由此可俯瞰莫斯科河与莫斯科市区，美丽景色尽收眼底。不过这天天气真的很差，全是白板天，而且也很冷，在寒风中瑟瑟发抖的我实在是没能欣赏俯瞰莫斯科的美。</p>
-<p>从观景台走下来，就是莫斯科大学了，它是俄罗斯联邦规模最大、历史最悠久的综合性高等学校，建于1755年，已经有200多年历史了，而它的主楼正是著名的莫斯科斯大林式建筑群——“七姐妹”之一。 莫斯科大学远远看去只能用”大”,”好大”之类的形容词来形容，当然比绝对面积，是肯定比不过国内的大学的，但这个大学是个封闭的碉堡，不是学生没法进入，在墙外看它的墙壁高高在上，四个钟楼守护的这个学校，分别代表了时间，气压，温度，还有一个实在没看到，在城楼下面瞻仰这个大学，内心os：”碉堡了”。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/moscow_university.png" alt="莫斯科大学"></p>
-<p>在莫大旁边，铺满了金色落叶的学生宿舍可能是我此生见过最美的学生宿舍了。</p>
-<h2 id="高尔基公园-amp-救世主教堂"><a href="#高尔基公园-amp-救世主教堂" class="headerlink" title="高尔基公园 &amp; 救世主教堂"></a>高尔基公园 &amp; 救世主教堂</h2><p>离开莫斯科大学之后，坐地铁到了高尔基公园，位于普希金海滨沿岸大街和列宁大街之间的位置。这个公园正在翻修，喷泉也没开，没什么好看的。有意思的是我在公园门口拍照的时候，一个人走上前找我说话，我当场就懵逼了，在这里，我才是辣个外国人，姿懿耐心的听完告诉我那个人是想我为他负责的XX保护协会捐点钱……那你眼神真诚点好不好~</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/Gorky_park.jpg" alt="高尔基公园"></p>
-<p>救世主教堂是世界上最高的东正教教堂，也是最大的东正教教堂之一。该教堂是拿破仑战争后，在1812年12月25日由沙皇亚历山大一世下令修建的，其目的是为了感谢救世主基督“将俄罗斯从失败中拯救出来，使她避免蒙羞”，并纪念在战争中牺牲的俄罗斯人民。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/Cathedral_of_Christ_the_Saviour_night.png" alt="救世主大教堂"></p>
-<p>在教堂前面可以远眺远方的克里姆林宫。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/klimr.png" alt="远眺克里姆林宫"></p>
-<h2 id="红场"><a href="#红场" class="headerlink" title="红场"></a>红场</h2><p>红场是俄罗斯首都莫斯科市中心的著名广场，位于莫斯科市中心，西南与克里姆林宫相毗连。原是前苏联重要节日举行群众集会和阅兵的地方。辟于十五世纪末，十七世纪后半期取今名。平面长方形，面积约4公顷。西侧是克里姆林宫，北面为国立历史博物馆，东侧为百货大楼，南部为瓦西里布拉仁教堂。临莫斯科河。列宁陵墓位于靠宫墙一面的中部。墓上为检阅台，两旁为观礼台。地面很独特全部由条石铺成，显得古老而神圣。红场是莫斯科历史的见证，也是莫斯科人的骄傲。在俄语中，“红色的”含有“美丽”之意，“红场”的意思就是“美丽的广场”。</p>
-<p>红场北面，是一座三层红砖白顶楼，其式样仿照古代俄罗斯建筑，南北各有尖塔8座。1995年5月8日，为纪念二战胜利50周年，立起了二战英雄朱可夫元帅的雕像。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/National_Museum.png" alt="国家博物馆（朱可夫像）"></p>
-<p>红场有不少著名的建筑物，南面是瓦西里升天大教堂，又名波克罗夫大教堂。它是伊凡雷帝为了纪念1552年战胜喀山鞑靼军队而下令建筑的。当你看到这座教堂，将会被它独特的建筑风格所吸引。这座教堂中间是一个带有大尖顶的教堂冠，8个带有不同色彩和花纹的小圆顶错落有致的分布在它的周围，再配上九个金色洋葱头状的教堂顶，绝妙无比。伊凡雷帝为了别处不再出现这样美丽的教堂，下令弄瞎了建筑师的双眼。</p>
-<p><img src="/2016/10/06/once-upon-a-time-in-Moscow/St.Basil&#39;s_Cathedral.png" alt="瓦西里升天大教堂"></p>
-<p>参观完红场之后，我就和amei汇合，连夜前往圣彼得堡了。</p>
-<h2 id="克里姆林宫"><a href="#克里姆林宫" class="headerlink" title="克里姆林宫"></a>克里姆林宫</h2><p>从圣彼得堡回来，克里姆林宫是我的最后一站了。</p>
-<p>“克里姆林”在俄语中意为”内城”。在蒙古语中，是”堡垒”之意。建于1256年，位于俄罗斯首都的最中心的博罗维茨基山岗上，南临莫斯科河，西北接亚历山大罗夫斯基花园，东南与红场相连，呈三角形。保持至今的围墙长2235米，厚6米，高14米，围墙上有塔楼18座，参差错落地分布在三角形宫墙上，其中最壮观、最著名的要属带有鸣钟的救世主塔楼。5座最大的城门塔楼和箭楼装上了红宝石五角星，这就是人们所说的克里姆林宫红星。克里姆林宫享有“世界第八奇景”的美誉。</p>
-<p>它那高大坚固的围墙和钟楼、金顶的教堂、古老的楼阁和宫殿，耸立在莫斯科河畔的博罗维茨基山岗上，构成了一组无比美丽而雄伟的艺术建筑群。莫斯科克里姆林宫是俄罗斯国家的象征，是世界上最大的建筑群之一，是历史瑰宝、文化和艺术古迹的宝库。曾为莫斯科公国和18世纪以前的沙皇皇宫。<br>那天下着小雨，踏进克林姆林宫的那一刻，我想，这可能是我和世界最强男人最接近的一次了，我主要参观了武器馆，珍宝馆。由于克林姆林宫不让拍照，所以这里图片少了很多 ： ）</p>
-<p>武器馆原有一个大武器库，1720年，彼得大帝将其改建成博物馆。馆内收藏着许多珍贵文物，有历代沙皇用过的物品、美术工艺品，以及掠夺而来的战利品。这里的皇冠、神像、十字架、盔甲、礼服和餐具无不镶满宝石，仅福音书封面就嵌有26千克黄金，以及无以数计的宝石；哥登诺大帝的金御座上则镶有两千颗宝石。信步宫中宛如目睹沙皇奢侈的生活。</p>
-<p>走在钻石馆里面，尤其是欣赏那些钻石珠宝，闪瞎了我的狗眼。</p>
-<h2 id="莫斯科地铁"><a href="#莫斯科地铁" class="headerlink" title="莫斯科地铁"></a>莫斯科地铁</h2><p>除了这些景点，不能不提的是莫斯科地铁，全称为列宁莫斯科市地铁系统（Московский метрополитен имени В. И. Ленина），被公认为世界上最漂亮的地铁，按运营路线长度为全球第7大地铁系统。地铁站的建筑造型各异、华丽典雅。每个车站都由国内著名建筑师设计，各有其独特风格，建筑格局也各不相同，多用五颜六色的大理石，花岗岩，陶瓷和五彩玻璃镶嵌除各种浮雕，雕刻和壁画装饰，照明灯具十分别致，好像富丽堂皇的宫殿，享有“地下的艺术殿堂”之美称。</p>
-<p>考虑到它1935年就已经开通，这里不得不惊讶于我国的地铁开发速度，我国的发展还是非常迅速的，用短短三十年赶上了走过了从前的世界强国五十年以上的发展之路，这些高速发展的背后，人民的幸福感普遍被剥夺了，在历史的进程之前，一个普通人是否快乐是否有高潮，这些都是不值得一提的。中国人过得真苦，不过欧洲人这么懒散，这么浪，迟早药丸，不是被自己玩死了，就是被绿绿玩死了。</p>
-<h2 id="回国"><a href="#回国" class="headerlink" title="回国"></a>回国</h2><p>快速参观完克里姆林宫之后，我找到梁博归还他的羽绒服，由于此前不慎丢失了钱包和移民卡，我还借了梁博5000卢保命钱，最后一餐是他请我吃的日本料理，想起一天之前我还和他吹比说请他吃牛排，这多少有点讽刺。过关时候我担心移民卡丢失导致我会被滞留，直到海关姐姐说you can go now的，我放佛看到万丈佛光在她背后展开，只想跪下叫她一声爸爸。在返程起飞后不久，我就睡着了，这一次旅途所有的开心，兴奋，惊吓，沮丧等情绪全部抛在脑后，精疲力尽的我只想早点回到家乡，然后去参加总裁的婚礼。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2121,7 +2070,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2176,7 +2125,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
